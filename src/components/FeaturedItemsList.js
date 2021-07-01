@@ -1,9 +1,9 @@
 import FeaturedItem from "./FeaturedItem";
 
-function FeaturedItemsList({ featuredArt }) {
+function FeaturedItemsList({ featuredArt, updateLikes }) {
 
   const renderArtworks = featuredArt.map((artwork) => (
-    <FeaturedItem key={artwork.title} artwork={artwork} />
+    <FeaturedItem key={artwork.title} artwork={artwork} updateLikes={updateLikes}/>
   ))
 
   return (

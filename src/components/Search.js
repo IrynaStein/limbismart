@@ -1,4 +1,13 @@
-function Search() {
+function Search({onCategoryFilter}) {
+
+    function handleFilterChange(e) {
+        onCategoryFilter(e.target.value)
+    }
+
+    function handleSortChange(e){
+        console.log(e.target.value)
+    }
+
     return (
         <div className="inline-items">
             <div className="ui category search">
@@ -9,34 +18,35 @@ function Search() {
                 <div className="results" />
             </div>
 
-            <div class="ui compact menu" style={{margin: "30px"}}>
-                <div class="ui simple dropdown item">
+            <div className="ui compact menu" style={{ margin: "30px" }}>
+                <div className="ui simple dropdown item">
                     Filter by category
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div value="flowers" class="item">Flowers</div>
-                        <div value="pop-culture" class="item">Pop culture characters</div>
-                        <div value="superheroes" class="item">Superheroes</div>
-                        <div value="abstract" class="item">Abstract</div>
-                        <div value="yoga" class="item">Yoga</div>
+                    <i className="dropdown icon"></i>
+                    <div onClick={(e) => handleFilterChange(e)} className="menu">
+                        <option value="all" className="item">All</option>
+                        <option value="flowers" className="item">Flowers</option>
+                        <option value="pop-culture" className="item">Pop culture characters</option>
+                        <option value="superheroes" className="item">Superheroes</option>
+                        <option value="abstract" className="item">Abstract</option>
+                        <option value="yoga" className="item">Yoga</option>
                     </div>
                 </div>
             </div>
 
-            <div class="ui compact menu" >
-                <div class="ui simple dropdown item">
+            <div className="ui compact menu" >
+                <div className="ui simple dropdown item">
                     Sort by...
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div value="AZ" class="item">A-Z</div>
-                        <div value="ZA" class="item">A-Z</div>
-                        <div value="date" class="item">Date created</div>
-                        <div value="edition" class="item">Edition</div>
-                        <div value="price" class="item">Price</div>
+                    <i className="dropdown icon"></i>
+                    <div onClick={(e) => handleSortChange(e)} className="menu">
+                        <option value="AZ" className="item">A-Z</option>
+                        <option value="ZA" className="item">A-Z</option>
+                        <option value="date" className="item">Date created</option>
+                        <option value="edition" className="item">Edition</option>
+                        <option value="price" className="item">Price</option>
                     </div>
                 </div>
-                <div class="ui hidden divider"></div>
-            </div> 
+                <div className="ui hidden divider"></div>
+            </div>
         </div>
     )
 }

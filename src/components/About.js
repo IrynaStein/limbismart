@@ -1,19 +1,19 @@
 function About() {
     return (
-        <div class="ui placeholder">
+        <div className="ui placeholder">
             <h3>ABOUT</h3>
-            <div class="image header">
-                <div class="line"></div>
-                <div class="line"></div>
+            <div className="image header">
+                <div className="line"></div>
+                <div className="line"></div>
             </div>
-            <div class="paragraph">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
+            <div className="paragraph">
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
             </div>
-            <div class="ui hidden divider"></div>
+            <div className="ui hidden divider"></div>
         </div>
     )
 }

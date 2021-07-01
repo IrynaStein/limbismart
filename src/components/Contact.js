@@ -17,7 +17,7 @@ function Contact() {
                 <label>E-mail</label>
                 <input type="email" placeholder="me@myemail.com" />
             </div>
-            <div class="field">
+            <div className="field">
                 <label>Message</label>
                 <textarea rows="2"></textarea>
             </div>
@@ -26,7 +26,7 @@ function Contact() {
                 <p>One of our team members will get back you yor shortly!</p>
             </div>
             <button className="ui submit button">Submit</button>
-            <div class="ui hidden divider"></div>
+            <div className="ui hidden divider"></div>
         </form>
     )
 }

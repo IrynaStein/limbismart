@@ -1,14 +1,31 @@
 import { useState } from "react"
-function FeaturedItem({ artwork }) {
+function FeaturedItem({ artwork, updateLikes}) {
     const [isLiked, setIsLiked] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
+    
 
-    const { title, image, likes, edition, price, medium } = artwork
-console.log(image)
+    const { id, title, image, likes, edition, price, medium } = artwork
 
+const [updatedLikes, setUpdatedLikes] = useState(likes)
+
+console.log(updatedLikes)
     function handleClick(e) {
         console.log(e)
         setIsLiked(mUV => !mUV)
+        console.log(id)
+        
+        isLiked? setUpdatedLikes(mUV => mUV-1) : setUpdatedLikes(mUV => mUV+1)
+        
+        // updateLikes(artwork)
+        fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`,{
+            method: "PATCH",
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify({
+                "likes": parseInt(updatedLikes) 
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => console.log(data))
     }
 
     function handleShowMoreInfo(e) {
@@ -28,7 +45,7 @@ console.log(image)
                     <div className="content">
                         <span onClick={(e) => handleClick(e)} className="right floated">
                             <i className={!isLiked ? "heart outline like icon" : "red heart icon"} />
-                            {likes}
+                            {updatedLikes}
                         </span>
                         <span onClick={(e) => handleShowMoreInfo(e)}>
                             <i className="info circle icon" />
@@ -47,7 +64,7 @@ console.log(image)
 
                         <br />
                         <span className="right floated">
-                            <div className="ui vertical animated button" tabindex="0">
+                            <div className="ui vertical animated button" tabIndex="0">
                                 <div className="hidden content">Shop</div>
                                 <div className="visible content">
                                     <i className="shop icon"></i>

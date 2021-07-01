@@ -13,7 +13,7 @@ function GalleryItem({ artwork }) {
     function handleShowMoreInfo(e) {
         setShowInfo((mUV) => !mUV)
     }
-console.log(image)
+
     return (
 
 
@@ -48,7 +48,7 @@ console.log(image)
                         </div>
                         <br />
                         <span className="right floated">
-                            <div className="ui vertical animated button" tabindex="0">
+                            <div className="ui vertical animated button" tabIndex="0">
                                 <div className="hidden content">Shop</div>
                                 <div className="visible content">
                                     <i className="shop icon"></i>
