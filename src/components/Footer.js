@@ -1,6 +1,6 @@
 function Footer(){
     return (
-        <div className="ui raised segment" style={{fontSize: '10px'}}>
+        <div className="ui segment" style={{fontSize: '10px'}}>
         Copyright ©  | 2021  |  LIMBISM
       </div>
     )

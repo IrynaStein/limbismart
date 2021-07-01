@@ -1,31 +1,31 @@
 const artworksamples = [
-    // {
-    //   title: "Blue Mushroom",
-    //   edition: 25,
-    //   likes: 17,
-    //   price: 45,
-    //   medium: "print",
-    //   image:
-    //     "../images/logo.jpg",
-    // },
-    // {
-    //   title: "Orange Mushroom",
-    //   edition: 25,
-    //   likes: 126,
-    //   price: 45,
-    //   medium: "print",
-    //   image:
-    //     "../images/orangeM.jpg",
-    // },
-    // {
-    //   title: "Purple Mushroom",
-    //   edition: 25,  
-    //   likes: 45,
-    //   price: 45,
-    //   medium: "print",
-    //   image:
-    //     "../images/purpleM.jpg",
-    // },
+    {
+      title: "Blue Mushroom",
+      edition: 25,
+      likes: 17,
+      price: 45,
+      medium: "print",
+      image:
+        "../images/logo.jpg",
+    },
+    {
+      title: "Orange Mushroom",
+      edition: 25,
+      likes: 126,
+      price: 45,
+      medium: "print",
+      image:
+        "../images/orangeM.jpg",
+    },
+    {
+      title: "Purple Mushroom",
+      edition: 25,  
+      likes: 45,
+      price: 45,
+      medium: "print",
+      image:
+        "../images/purpleM.jpg",
+    },
     {
         title: "Kirby",
         edition: 5,  

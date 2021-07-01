@@ -1,22 +1,18 @@
-import {useState} from "react"
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom"
 import Header from "./Header"
 import Navbar from "./Navbar"
-import FeaturedItems from "./FeaturedItemsList"
 import Footer from "./Footer"
-import { Container } from 'semantic-ui-react'
-import artworksamples from "../art_data"
-import About from "./About"
+// import artworksamples from "../art_data"
+import Limbism from "./Limbism"
 
-//HomePage//Limbism
+
 function App() {
-const [artworks, setArtworks] = useState(artworksamples)
 
   return (
     <div className="app">
       <Header />
-      <div className="ui grid">
-        <Navbar artworks={artworks}/>
+      <div className="ui grid main-container">
+        <Navbar />
+        <Limbism />
       </div>
       <Footer />
     </div>
@@ -24,3 +20,4 @@ const [artworks, setArtworks] = useState(artworksamples)
 }
 
 export default App;
+

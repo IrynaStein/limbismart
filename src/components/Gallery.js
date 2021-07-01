@@ -1,6 +1,21 @@
-function Gallery(){
+import GalleryItem from "./GalleryItem"
+import Search from "./Search"
+
+function Gallery({ artworks }) {
+console.log(artworks)
+    const renderGalleryArtworks = artworks.map((artwork) => (
+        <GalleryItem key={artwork.id} artwork={artwork} />
+    ))
     return (
-        <h3>GALLERY</h3>
+        <div>
+            <Search />
+            <div className="ui four column grid">
+            <div className="four column row">
+            {renderGalleryArtworks}
+            </div>
+            </div>
+     
+        </div>
     )
 }
 

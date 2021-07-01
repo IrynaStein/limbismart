@@ -1,0 +1,64 @@
+{
+    "artworks": [
+        {
+            "id": 1,
+            "title": "Blue Mushroom",
+            "edition": 25,
+            "likes": 17,
+            "price": 45,
+            "medium": "print",
+            "image": "https://photos.google.com/album/AF1QipPIV_yMW3A-k89XRUd70UJaoRf9jmlWtxzd1dGQ/photo/AF1QipPpkDB-InW_Hv6Rmj6nnmwZOGIIpqqbma8-_9bm",
+            "featured": false
+        },
+        {
+            "id": 2,
+            "title": "Orange Mushroom",
+            "edition": 25,
+            "likes": 126,
+            "price": 45,
+            "medium": "print",
+            "image": "https://photos.google.com/album/AF1QipPIV_yMW3A-k89XRUd70UJaoRf9jmlWtxzd1dGQ/photo/AF1QipPlcJ2CYD8oN2x0vT3zFxqFURoOh4uADEyH5T19",
+            "featured": false
+        },
+        {
+            "id": 3,
+            "title": "Purple Mario Mushroom",
+            "edition": 25,
+            "likes": 45,
+            "price": 45,
+            "medium": "print",
+            "image": "https://photos.google.com/album/AF1QipPIV_yMW3A-k89XRUd70UJaoRf9jmlWtxzd1dGQ/photo/AF1QipMMxhcMourGkL0hfnBdubPdt1cRoh8ja3PyoURL",
+            "featured": false
+        },
+        {
+            "id": 4,
+            "title": "Kirby",
+            "edition": 5,
+            "likes": 60,
+            "price": 45,
+            "medium": "Multicolor digital print. Produced on archival, acid-free heavy weight paper. Hand signed and numbered in lower right corner. Certificate of authenticity. Unframed",
+            "image": "https://photos.google.com/album/AF1QipPIV_yMW3A-k89XRUd70UJaoRf9jmlWtxzd1dGQ/photo/AF1QipOcwRfjIlQi5HZkGlhzxsjELIKxJOtPxleeWR47",
+            "featured": true
+        },
+        {
+            "id": 5,
+            "title": "California Poppies",
+            "edition": 10,
+            "likes": 45,
+            "price": 45,
+            "medium": "Multicolor digital print. Produced on archival, acid-free heavy weight paper. Hand signed and numbered in lower right corner. Certificate of authenticity. Unframed",
+            "image": "https://photos.google.com/album/AF1QipPIV_yMW3A-k89XRUd70UJaoRf9jmlWtxzd1dGQ/photo/AF1QipPiu4maFlr06zJol-7oBJRPZ5mcdpVBHXq2CH2K",
+            "featured": true
+        },
+        {
+            "id": 6,
+            "title": "Humble Prayer",
+            "edition": 25,
+            "likes": 45,
+            "price": 45,
+            "medium": "Multicolor digital print. Produced on archival, acid-free heavy weight paper. Hand signed and numbered in lower right corner. Certificate of authenticity. Unframed",
+            "image": "https://photos.google.com/album/AF1QipPIV_yMW3A-k89XRUd70UJaoRf9jmlWtxzd1dGQ/photo/AF1QipNpZVeVANiePuaGVs8thQb7AaLCihpTuotsLZAy",
+            "featured": true
+        }
+    ]
+}

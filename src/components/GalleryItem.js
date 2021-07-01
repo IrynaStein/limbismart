@@ -1,10 +1,9 @@
 import { useState } from "react"
-function FeaturedItem({ artwork }) {
+
+function GalleryItem({ artwork }) {
+    const { title, image, likes, edition, medium, price } = artwork
     const [isLiked, setIsLiked] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
-
-    const { title, image, likes, edition, price, medium } = artwork
-console.log(image)
 
     function handleClick(e) {
         console.log(e)
@@ -14,8 +13,10 @@ console.log(image)
     function handleShowMoreInfo(e) {
         setShowInfo((mUV) => !mUV)
     }
-
+console.log(image)
     return (
+
+
         <div className="column">
             <div className="ui segment">
                 <div className="ui card">
@@ -42,9 +43,9 @@ console.log(image)
                                 <li>medium: {medium}</li>
                                 <li>size: ...</li>
                                 <li>price:  ${price}</li>
+
                             </p>
                         </div>
-
                         <br />
                         <span className="right floated">
                             <div className="ui vertical animated button" tabindex="0">
@@ -61,4 +62,4 @@ console.log(image)
     )
 }
 
-export default FeaturedItem;
+export default GalleryItem;
