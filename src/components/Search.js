@@ -20,8 +20,8 @@ function Search({onCategoryFilter}) {
 
             <div className="ui compact menu" style={{ margin: "30px" }}>
                 <div className="ui simple dropdown item">
-                    Filter by category
-                    <i className="dropdown icon"></i>
+                    Filter by category 
+                    <i className="dropdown icon"></i> 
                     <div onClick={(e) => handleFilterChange(e)} className="menu">
                         <option value="all" className="item">All</option>
                         <option value="flowers" className="item">Flowers</option>

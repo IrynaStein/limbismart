@@ -12,7 +12,7 @@ import { Container } from 'semantic-ui-react'
 function Limbism() {
     const [artworks, setArtworks] = useState([])
     const [featuredArt, setFeaturedArt] = useState([])
-    const [filterTerm, setFilterTerm] = useState("All")
+    const [filterTerm, setFilterTerm] = useState("all")
 
     useEffect(() => {
         fetch("https://safe-temple-39376.herokuapp.com/artworks")
@@ -38,7 +38,16 @@ function Limbism() {
 
     function updateLikes(artworkObj){
         console.log(artworkObj)
-        
+    //     const updatedLikesArtwork = artworks.map((artwork) => {
+    //         if (artwork.id === artworkObj.id){
+    //             return artworkObj
+    //         }
+    //         else {
+    //             return artwork
+    //         }
+    //     })
+
+    // setArtworks(updatedLikesArtwork)
     }
 
 

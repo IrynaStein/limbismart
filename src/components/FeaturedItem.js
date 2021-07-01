@@ -8,14 +8,15 @@ function FeaturedItem({ artwork, updateLikes}) {
 
 const [updatedLikes, setUpdatedLikes] = useState(likes)
 
-console.log(updatedLikes)
+
+
     function handleClick(e) {
         console.log(e)
         setIsLiked(mUV => !mUV)
-        console.log(id)
+        // console.log(id)
         
-        isLiked? setUpdatedLikes(mUV => mUV-1) : setUpdatedLikes(mUV => mUV+1)
-        
+        // isLiked? setUpdatedLikes(mUV => mUV-1) : setUpdatedLikes(mUV => mUV+1)
+        setUpdatedLikes(mUV => mUV + 1)
         // updateLikes(artwork)
         fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`,{
             method: "PATCH",
@@ -25,8 +26,9 @@ console.log(updatedLikes)
             })
         })
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => console.log(data.likes))
     }
+    console.log(updatedLikes)
 
     function handleShowMoreInfo(e) {
         setShowInfo((mUV) => !mUV)
