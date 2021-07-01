@@ -60,8 +60,7 @@ return (
                     <div className="ui large transparent left icon input">
                         <p style={{ listStyleType: 'none', fontSize: '12px' }}>
                             <li>edition: {edition}</li>
-                            <li>medium: {medium}</li>
-                            <li>size: ...</li>
+                            <li>description: {medium}</li>
                             <li>price:  ${price}</li>
                         </p>
                     </div>

@@ -15,6 +15,7 @@ function Limbism() {
     const [filterTerm, setFilterTerm] = useState("all")
     const [sortTerm, setSortTerm] = useState("all")
     const [searchTerm, setSearchTerm] = useState("")
+    const [searchTermEdit, setSearchTermEdit] = useState("")
 
     useEffect(() => {
         fetch("https://safe-temple-39376.herokuapp.com/artworks")
@@ -92,6 +93,16 @@ function Limbism() {
         }
     }
 
+    function onAddNewArt(newArtworkObj){
+        setArtworks([...artworks, newArtworkObj])
+    }
+
+    function onSearchEdit(searchEditValue){
+        setSearchTermEdit(searchEditValue)
+    }
+
+    const editableArtWork = artworks.filter((artwork) => artwork.title.toLowerCase().includes(searchTermEdit))
+
     return (
         <Container >
             <Switch >
@@ -116,7 +127,7 @@ function Limbism() {
                     <Contact />
                 </Route>
                 <Route exact path="/admin">
-                    <Admin />
+                    <Admin onAddNewArt={onAddNewArt} onSearchEdit={onSearchEdit} editableArtWork={editableArtWork}/>
                 </Route>
             </Switch>
             <div className="ui hidden divider"></div>

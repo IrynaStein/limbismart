@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 function GalleryItem({ artwork, updateLikes }) {
-    const { title, image, likes, edition, medium, price } = artwork
+    const { title, image, likes, edition, medium, price, "date created": date } = artwork
     const [isLiked, setIsLiked] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
 
@@ -45,7 +45,7 @@ function GalleryItem({ artwork, updateLikes }) {
             <div className="ui segment">
                 <div className="ui card">
                     <div className="centered content">
-                        {title}
+                       <b>{title}</b> 
                     </div>
                     <div className="image">
                         <img src={image} alt="artwork"/>
@@ -63,10 +63,10 @@ function GalleryItem({ artwork, updateLikes }) {
                     <div className="extra content" style={{ display: showInfo ? "block" : "none" }}>
                         <div className="ui large transparent left icon input">
                             <p style={{ listStyleType: 'none', fontSize: '12px' }}>
-                                <li>edition: {edition}</li>
-                                <li>medium: {medium}</li>
-                                <li>size: ...</li>
-                                <li>price:  ${price}</li>
+                                <li><b>edition:</b> {edition}</li>
+                                <li><b>description:</b> {medium}</li>
+                                <li><b>price:</b> ${price}</li>
+                                <li><b>year:</b> {date}</li>
 
                             </p>
                         </div>
