@@ -59,7 +59,7 @@ function Search({ onCategoryFilter, onSortChange, searchTerm, onSearch, onReset 
             </div>
 
             <div className="ui slider checkbox" style={{ margin: "30px" }}>
-                <input onChange={handleClearChange} type="checkbox" name="newsletter" />
+                <input onClick={handleClearChange} type="checkbox" name="newsletter" />
                 <label>Clear all filters</label>
             </div>
 

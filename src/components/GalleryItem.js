@@ -5,6 +5,7 @@ function GalleryItem({ artwork, updateLikes }) {
     const [isLiked, setIsLiked] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
 
+
     function handleClick(e) {
         console.log(e)
         setIsLiked(mUV => !mUV)
@@ -13,6 +14,9 @@ function GalleryItem({ artwork, updateLikes }) {
     function handleShowMoreInfo(e) {
         setShowInfo((mUV) => !mUV)
     }
+
+//I am not able to implement the same PATCH request as I did in featuredItems component, 
+//because on Limbism page I am passign down filtered array instead of the original one
 
     // if (isLiked) {
     //     fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {

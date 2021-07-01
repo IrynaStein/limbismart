@@ -58,40 +58,31 @@ function Limbism() {
                 return artwork1["date created"] > artwork2["date created"] ? -1 : 1
             }
         })
-    //finish writing sorting and then refactor with a switch^^^^
+    //refactor with a switch^^^^
 
 
     function updateLikes(artworkObj) {
         console.log(artworkObj)
         const newArray = featuredArt.map((art) => (art.id === artworkObj.id) ? artworkObj : art)
-        // console.log(newArray)
         setFeaturedArt(newArray)
     }
-
-    // function updateGalleryLikes(artworkObj) {
-    //     console.log(artworkObj)
-    //     const newArray2 = artworks.map((art) => (art.id === artworkObj.id) ? artworkObj : art)
-    //     console.log(newArray2)
-    //     setArtworks(newArray2)
-    // }
-
-    // console.log(featuredArt)
 
     function onSortChange(selectedSort) {
         setSortTerm(selectedSort)
     }
 
     function onSearch(searchWord) {
-        // console.log(searchWord)
         setSearchTerm(searchWord)
     }
 
     function onReset(checked) {
+        console.log(checked)
         if (checked) {
             setArtworks(artworks)
-            // console.log(artworks)
         }
+        console.log("updated artworks array")
     }
+//this function is not working ^^^^ it's supposed to reset all filters to the original array
 
     function onAddNewArt(newArtworkObj){
         setArtworks([...artworks, newArtworkObj])
