@@ -1,18 +1,26 @@
-function Search({onCategoryFilter}) {
+function Search({ onCategoryFilter, onSortChange, searchTerm, onSearch, onReset }) {
 
     function handleFilterChange(e) {
         onCategoryFilter(e.target.value)
     }
 
-    function handleSortChange(e){
-        console.log(e.target.value)
+    function handleSortChange(e) {
+        onSortChange(e.target.value)
+    }
+
+    function handleChange(e) {
+        onSearch(e.target.value)
+    }
+
+    function handleClearChange(e){
+        onReset(e.target.checked)
     }
 
     return (
         <div className="inline-items">
             <div className="ui category search">
                 <div className="ui icon input">
-                    <input className="prompt" type="text" placeholder="Search by title..." />
+                    <input onChange={handleChange} value={searchTerm} className="prompt" type="text" placeholder="Search by title..." />
                     <i className="search icon" />
                 </div>
                 <div className="results" />
@@ -20,8 +28,8 @@ function Search({onCategoryFilter}) {
 
             <div className="ui compact menu" style={{ margin: "30px" }}>
                 <div className="ui simple dropdown item">
-                    Filter by category 
-                    <i className="dropdown icon"></i> 
+                    Filter by category
+                    <i className="dropdown icon"></i>
                     <div onClick={(e) => handleFilterChange(e)} className="menu">
                         <option value="all" className="item">All</option>
                         <option value="flowers" className="item">Flowers</option>
@@ -38,15 +46,23 @@ function Search({onCategoryFilter}) {
                     Sort by...
                     <i className="dropdown icon"></i>
                     <div onClick={(e) => handleSortChange(e)} className="menu">
+                        <option value="all" className="item">Reset sort...</option>
+                        <option value="mostpopular" className="item">Most popluar</option>
                         <option value="AZ" className="item">A-Z</option>
-                        <option value="ZA" className="item">A-Z</option>
-                        <option value="date" className="item">Date created</option>
+                        <option value="ZA" className="item">Z-A</option>
+                        <option value="date" className="item">Newest</option>
                         <option value="edition" className="item">Edition</option>
                         <option value="price" className="item">Price</option>
                     </div>
                 </div>
                 <div className="ui hidden divider"></div>
             </div>
+
+            <div className="ui slider checkbox" style={{ margin: "30px" }}>
+                <input onChange={handleClearChange} type="checkbox" name="newsletter" />
+                <label>Clear all filters</label>
+            </div>
+
         </div>
     )
 }

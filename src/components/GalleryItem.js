@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function GalleryItem({ artwork }) {
+function GalleryItem({ artwork, updateLikes }) {
     const { title, image, likes, edition, medium, price } = artwork
     const [isLiked, setIsLiked] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
@@ -13,6 +13,30 @@ function GalleryItem({ artwork }) {
     function handleShowMoreInfo(e) {
         setShowInfo((mUV) => !mUV)
     }
+
+    // if (isLiked) {
+    //     fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
+    //         method: "PATCH",
+    //         headers: { "Content-type": "application/json" },
+    //         body: JSON.stringify({
+    //             "likes": likes - 1
+    //         })
+    //     })
+    //         .then(resp => resp.json())
+    //         .then(data => updateLikes(data))
+    // }
+    // else {
+    //     fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
+    //         method: "PATCH",
+    //         headers: { "Content-type": "application/json" },
+    //         body: JSON.stringify({
+    //             "likes": likes + 1
+    //         })
+    //     })
+    //         .then(resp => resp.json())
+    //         .then(data => updateLikes(data))
+    // }
+
 
     return (
 
@@ -49,7 +73,7 @@ function GalleryItem({ artwork }) {
                         <br />
                         <span className="right floated">
                             <div className="ui vertical animated button" tabIndex="0">
-                                <div className="hidden content">Shop</div>
+                                <a href="https://www.etsy.com/shop/ArtPrintsByLimbism?ref=seller-platform-mcnav" className="hidden content">Shop</a>
                                 <div className="visible content">
                                     <i className="shop icon"></i>
                                 </div>
