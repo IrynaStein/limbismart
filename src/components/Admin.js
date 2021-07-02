@@ -17,7 +17,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
         <div className="item" key={artwork.id}>
             <img className="ui avatar image" src={artwork.image} alt="artwork" />
             <div className="content">
-                <a className="header">{artwork.title}</a>
+                <div className="header">{artwork.title}</div>
                 <div className="ui buttons">
                     <button className="ui button" onClick={(e) => handleDelete(artwork.id)}>Delete</button>
                     <div className="or"></div>
@@ -27,7 +27,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
         </div>
     ))
 
-    
+
     function handleDelete(id) {
         console.log(id)
         fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
@@ -36,10 +36,13 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
         onDelete(id)
     }
 
-    function handleEdit(artwork){
+    function handleEdit(artwork) {
+
         console.log(artwork)
         setFormData(artwork)
+
     }
+    console.log(formData.id)
 
     function handleChange(e) {
         console.log(e.target.value)
@@ -59,10 +62,23 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(formData)
         }
-        fetch("https://safe-temple-39376.herokuapp.com/artworks", configObj)
-            .then(resp => resp.json())
-            .then(data => onAddNewArt(data))
-        setFormData(defaultState)
+        const configObj2 = {
+            method: "PATCH",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(formData)
+        }
+        if (formData.id) {
+            fetch(`https://safe-temple-39376.herokuapp.com/artworks/${formData.id}`, configObj2)
+                .then(resp => resp.json())
+                .then(data => onAddNewArt(data))
+            setFormData(defaultState)
+        }
+        else {
+            fetch("https://safe-temple-39376.herokuapp.com/artworks", configObj)
+                .then(resp => resp.json())
+                .then(data => onAddNewArt(data))
+            setFormData(defaultState)
+        }
     }
 
     function handleSearch(e) {
@@ -88,24 +104,24 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
                 </div>
                 <div className="field">
                     <label>Image Url</label>
-                    <input type="text" name="image" onChange={handleChange} placeholder="imageUrl" value={formData.image}/>
+                    <input type="text" name="image" onChange={handleChange} placeholder="imageUrl" value={formData.image} />
                 </div>
                 <div className="fields">
                     <div className="field">
                         <label>Edition</label>
-                        <input type="number" name="edition" onChange={handleChange} placeholder="edition" value={formData.edition}/>
+                        <input type="number" name="edition" onChange={handleChange} placeholder="edition" value={formData.edition} />
                     </div>
                     <div className="field">
                         <label>Price</label>
-                        <input type="number" name="price" onChange={handleChange} placeholder="price" step="0.01" value={formData.price}/>
+                        <input type="number" name="price" onChange={handleChange} placeholder="price" step="0.01" value={formData.price} />
                     </div>
                     <div className="field">
                         <label>Likes</label>
-                        <input type="number" name="likes" onChange={handleChange} placeholder="likes" value={formData.likes}/>
+                        <input type="number" name="likes" onChange={handleChange} placeholder="likes" value={formData.likes} />
                     </div>
                     <div className="field">
                         <label>Date created</label>
-                        <input type="number" name="date created" onChange={handleChange} placeholder="date created" value={formData["date created"]}/>
+                        <input type="number" name="date created" onChange={handleChange} placeholder="date created" value={formData["date created"]} />
                     </div>
                     <div className="field">
                         <label>Category</label>
@@ -121,15 +137,15 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
                 </div>
                 <div className="field">
                     <div className="ui toggle checkbox">
-                        <input type="checkbox" onChange={handleFeatureChange} checked={formData.featured}/>
+                        <input type="checkbox" onChange={handleFeatureChange} checked={formData.featured} />
                         <label>Make this work a featured image</label>
                     </div>
                 </div>
                 <div className="field">
                     <label>Description</label>
-                    <input type="text" name="medium" onChange={handleChange} placeholder="description" value={formData.medium}/>
+                    <input type="text" name="medium" onChange={handleChange} placeholder="description" value={formData.medium} />
                 </div>
-                <button className="ui button" type="submit">Upload new artwork</button>
+                <button className="ui button" type="submit">{formData.id ? "Update the artwork" : "Upload new artwork"}</button>
             </form>
             <div className="ui list">
                 {listOfArtworks}

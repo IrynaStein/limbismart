@@ -2,7 +2,7 @@ import { useState } from "react"
 function FeaturedItem({ artwork, updateLikes }) {
     const [isLiked, setIsLiked] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
-    const { id, title, image, likes, edition, price, medium } = artwork
+    const { id, title, image, likes, edition, price, medium, "date created": date } = artwork
 
     function handleClick(e) {
         console.log(e)
@@ -59,9 +59,10 @@ return (
                 <div className="extra content" style={{ display: showInfo ? "block" : "none" }}>
                     <div className="ui large transparent left icon input">
                         <p style={{ listStyleType: 'none', fontSize: '12px' }}>
-                            <li>edition: {edition}</li>
-                            <li>description: {medium}</li>
-                            <li>price:  ${price}</li>
+                            <li><b>edition:</b> {edition}</li>
+                            <li><b>description:</b> {medium}</li>
+                            <li><b>price:</b> ${price}</li>
+                            <li><b>year: </b>{date}</li>
                         </p>
                     </div>
 

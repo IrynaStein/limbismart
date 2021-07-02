@@ -4,7 +4,7 @@ function Navbar() {
     return (
         <div className="navbar">
             <div className="ui vertical fluid tabular menu">
-                <NavLink to="/" className="item">
+                <NavLink exact to="/" className="item">
                     LIMBISM
                 </NavLink>
                 <NavLink to="/about" className="item">

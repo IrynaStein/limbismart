@@ -11,7 +11,7 @@ import { Container } from 'semantic-ui-react'
 
 function Limbism() {
     const [artworks, setArtworks] = useState([])
-    const [featuredArt, setFeaturedArt] = useState([])
+    // const [featuredArt, setFeaturedArt] = useState([])
     const [filterTerm, setFilterTerm] = useState("all")
     const [sortTerm, setSortTerm] = useState("all")
     const [searchTerm, setSearchTerm] = useState("")
@@ -24,11 +24,19 @@ function Limbism() {
     }, [])
 
 
+    // function sortArtworksbyFeature(artworksArray) {
+    //     const featuredWorks = artworksArray.filter((element) => element.featured)
+    //     setFeaturedArt(featuredWorks)
+    //     setArtworks(artworksArray)
+    // }
+
     function sortArtworksbyFeature(artworksArray) {
-        const featuredWorks = artworksArray.filter((element) => element.featured)
-        setFeaturedArt(featuredWorks)
         setArtworks(artworksArray)
     }
+
+    const featuredWorks = artworks.filter((element) => element.featured)
+
+    
 
     function onCategoryFilter(selectedFilter) {
         setFilterTerm(selectedFilter)
@@ -61,10 +69,16 @@ function Limbism() {
     //refactor with a switch^^^^
 
 
+    // function updateLikes(artworkObj) {
+    //     console.log(artworkObj)
+    //     const newArray = featuredArt.map((art) => (art.id === artworkObj.id) ? artworkObj : art)
+    //     setFeaturedArt(newArray)
+    // }
+    
     function updateLikes(artworkObj) {
         console.log(artworkObj)
-        const newArray = featuredArt.map((art) => (art.id === artworkObj.id) ? artworkObj : art)
-        setFeaturedArt(newArray)
+        const newArray = artworks.map((art) => (art.id === artworkObj.id) ? artworkObj : art)
+        setArtworks(newArray)
     }
 
     function onSortChange(selectedSort) {
@@ -85,7 +99,24 @@ function Limbism() {
 //this function is not working ^^^^ it's supposed to reset all filters to the original array
 
     function onAddNewArt(newArtworkObj){
-        setArtworks([...artworks, newArtworkObj])
+        const updatedWorks = artworks.map((artwork) => {
+            if (artwork.id === newArtworkObj.id){
+                // const index = artwork.findIndex()
+                // const arrayBeforeChange = artworks.slice(0, index)
+                // const arrayAfterChange = artworks.slice(index + 1)
+                // return [...arrayBeforeChange, newArtworkObj, ...arrayAfterChange]
+                console.log("this work already exists")
+                //replace old object with a new one
+                //setArtworks to this updated obj + old array (...spread, obj)
+                return newArtworkObj
+            }
+            else {
+                // return [...artworks, newArtworkObj]
+                console.log("this is new work")
+                return artwork
+            }
+        })
+       setArtworks(updatedWorks) 
     }
 
     function onSearchEdit(searchEditValue){
@@ -102,7 +133,8 @@ setArtworks(deletedArtwork)
         <Container >
             <Switch >
                 <Route exact path="/">
-                    <FeaturedItemsList featuredArt={featuredArt} updateLikes={updateLikes} />
+                    {/* <FeaturedItemsList featuredArt={featuredArt} updateLikes={updateLikes} /> */}
+                    <FeaturedItemsList featuredArt={featuredWorks} updateLikes={updateLikes} />
                 </Route>
                 <Route exact path="/about">
                     <About />
@@ -122,7 +154,8 @@ setArtworks(deletedArtwork)
                     <Contact />
                 </Route>
                 <Route exact path="/admin">
-                    <Admin onAddNewArt={onAddNewArt} 
+                    <Admin 
+                    onAddNewArt={onAddNewArt} 
                     onSearchEdit={onSearchEdit} 
                     editableArtWork={editableArtWork}
                     onDelete={onDelete}
