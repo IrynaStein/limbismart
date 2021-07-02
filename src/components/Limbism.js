@@ -91,7 +91,11 @@ function Limbism() {
     function onSearchEdit(searchEditValue){
         setSearchTermEdit(searchEditValue)
     }
-
+function onDelete(id){
+console.log(id)
+const deletedArtwork = artworks.filter((artwork) => artwork.id !== id)
+setArtworks(deletedArtwork)
+}
     const editableArtWork = artworks.filter((artwork) => artwork.title.toLowerCase().includes(searchTermEdit))
 
     return (
@@ -118,7 +122,11 @@ function Limbism() {
                     <Contact />
                 </Route>
                 <Route exact path="/admin">
-                    <Admin onAddNewArt={onAddNewArt} onSearchEdit={onSearchEdit} editableArtWork={editableArtWork}/>
+                    <Admin onAddNewArt={onAddNewArt} 
+                    onSearchEdit={onSearchEdit} 
+                    editableArtWork={editableArtWork}
+                    onDelete={onDelete}
+                    />
                 </Route>
             </Switch>
             <div className="ui hidden divider"></div>

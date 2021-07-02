@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function Admin({ onAddNewArt, onSearchEdit, editableArtWork }) {
+function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
     const defaultState = {
         title: "",
         edition: 0,
@@ -13,11 +13,33 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork }) {
     }
     const [formData, setFormData] = useState(defaultState)
 
-    console.log(editableArtWork)
-    if (editableArtWork.title > 0) {
-        console.log(editableArtWork.title)
+    const listOfArtworks = editableArtWork.map((artwork) => (
+        <div className="item" key={artwork.id}>
+            <img className="ui avatar image" src={artwork.image} alt="artwork" />
+            <div className="content">
+                <a className="header">{artwork.title}</a>
+                <div className="ui buttons">
+                    <button className="ui button" onClick={(e) => handleDelete(artwork.id)}>Delete</button>
+                    <div className="or"></div>
+                    <button className="ui positive button" onClick={(e) => handleEdit(artwork)}>Edit</button>
+                </div>
+            </div>
+        </div>
+    ))
+
+    
+    function handleDelete(id) {
+        console.log(id)
+        fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
+            method: "DELETE"
+        })
+        onDelete(id)
     }
 
+    function handleEdit(artwork){
+        console.log(artwork)
+        setFormData(artwork)
+    }
 
     function handleChange(e) {
         console.log(e.target.value)
@@ -66,28 +88,28 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork }) {
                 </div>
                 <div className="field">
                     <label>Image Url</label>
-                    <input type="text" name="image" onChange={handleChange} placeholder="imageUrl" />
+                    <input type="text" name="image" onChange={handleChange} placeholder="imageUrl" value={formData.image}/>
                 </div>
                 <div className="fields">
                     <div className="field">
                         <label>Edition</label>
-                        <input type="number" name="edition" onChange={handleChange} placeholder="edition" />
+                        <input type="number" name="edition" onChange={handleChange} placeholder="edition" value={formData.edition}/>
                     </div>
                     <div className="field">
                         <label>Price</label>
-                        <input type="number" name="price" onChange={handleChange} placeholder="price" step="0.01" />
+                        <input type="number" name="price" onChange={handleChange} placeholder="price" step="0.01" value={formData.price}/>
                     </div>
                     <div className="field">
                         <label>Likes</label>
-                        <input type="number" name="likes" onChange={handleChange} placeholder="likes" />
+                        <input type="number" name="likes" onChange={handleChange} placeholder="likes" value={formData.likes}/>
                     </div>
                     <div className="field">
                         <label>Date created</label>
-                        <input type="number" name="date created" onChange={handleChange} placeholder="date created" />
+                        <input type="number" name="date created" onChange={handleChange} placeholder="date created" value={formData["date created"]}/>
                     </div>
                     <div className="field">
                         <label>Category</label>
-                        <select className="ui dropdown" type="text" name="category" onChange={handleChange} placeholder="category">
+                        <select className="ui dropdown" type="text" name="category" onChange={handleChange} placeholder="category" value={formData.category}>
                             <option className="item">flowers</option>
                             <option className="item">superheroes</option>
                             <option>pop-culture</option>
@@ -99,16 +121,19 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork }) {
                 </div>
                 <div className="field">
                     <div className="ui toggle checkbox">
-                        <input type="checkbox" onChange={handleFeatureChange} />
+                        <input type="checkbox" onChange={handleFeatureChange} checked={formData.featured}/>
                         <label>Make this work a featured image</label>
                     </div>
                 </div>
                 <div className="field">
                     <label>Description</label>
-                    <input type="text" name="medium" onChange={handleChange} placeholder="description" />
+                    <input type="text" name="medium" onChange={handleChange} placeholder="description" value={formData.medium}/>
                 </div>
                 <button className="ui button" type="submit">Upload new artwork</button>
             </form>
+            <div className="ui list">
+                {listOfArtworks}
+            </div>
         </div>
     )
 }

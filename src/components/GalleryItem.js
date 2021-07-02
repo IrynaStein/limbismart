@@ -43,8 +43,6 @@ function GalleryItem({ artwork, updateLikes }) {
 
 
     return (
-
-
         <div className="column">
             <div className="ui segment">
                 <div className="ui card">
