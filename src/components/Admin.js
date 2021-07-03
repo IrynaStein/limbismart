@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Container, Segment } from "semantic-ui-react"
 
 function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt }) {
     const defaultState = {
@@ -16,19 +15,21 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
 
     const listOfArtworks = editableArtWork.map((artwork) => (
         <div className="item" key={artwork.id}>
-            <img className="ui avatar image" src={artwork.image} alt="artwork" />
+            <img className="ui mini circular image" src={artwork.image} alt="artwork" />
+            <div className={artwork.featured? "ui blue empty circular label": ""}></div>
             <div className="content">
-                <div className="header">{artwork.title}</div>
-                <p>{artwork.medium}; 
-                edition: {artwork.edition}; 
-                date created: {artwork["date created"]}; 
-                price: {artwork.price}
+                <div className="header">{artwork.title} </div>
+                <p>description: <em>{artwork.medium}; </em>
+                edition: <em>{artwork.edition}; </em>
+                date created: <em>{artwork["date created"]}; </em>
+                price: $<em>{artwork.price}. </em>
                 </p>
                 <div className="ui buttons">
                     <button className="ui button" onClick={(e) => handleDelete(artwork.id)}>Delete</button>
                     <div className="or"></div>
                     <button className="ui positive button" onClick={(e) => handleEdit(artwork)}>Edit</button>
                 </div>
+                <div class="ui section divider"></div>
             </div>
         </div>
     ))
@@ -43,10 +44,12 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
     }
 
     function handleEdit(artwork) {
+
         console.log(artwork)
         setFormData(artwork)
 
     }
+    console.log(formData.id)
 
     function handleChange(e) {
         console.log(e.target.value)
@@ -90,7 +93,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
     }
 
     return (
-        <div>
+        <div >
             <div className="ui center aligned container">
                 <div className="ui category search">
                     <div className="ui icon input">
@@ -100,8 +103,10 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
                     <div className="results" />
                 </div>
             </div>
-
+            <br />
+            <br />
             <form className="ui form" onSubmit={handleSubmit}>
+
                 <div className="field">
                     <label>Title</label>
                     <input type="text" name="title" onChange={handleChange} placeholder="title" value={formData.title} />
@@ -151,11 +156,17 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
                 </div>
                 <button className="ui button" type="submit">{formData.id ? "Update the artwork" : "Upload new artwork"}</button>
             </form>
-            <Segment style={{ overflow: 'auto', maxHeight: 200 }}>
+            <div className="ui hidden divider"></div>
+            <div className="inline-items">
+            <div className="ui blue empty circular label"></div> &nbsp; &nbsp;
+      
+            <p style={{fontSize: "11px"}}><em>appears when the artwork is featured</em></p>
+            </div>
+            <div className="ui segment" style={{ overflow: 'auto', maxHeight: 200 }}>
                 <div className="ui list">
                     {listOfArtworks}
                 </div>
-            </Segment>
+            </div>
         </div>
     )
 }
