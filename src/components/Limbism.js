@@ -20,9 +20,8 @@ function Limbism() {
     useEffect(() => {
         fetch("https://safe-temple-39376.herokuapp.com/artworks")
             .then(resp => resp.json())
-            .then(data => sortArtworksbyFeature(data))
+            .then(data => setArtworks(data))
     }, [])
-
 
     // function sortArtworksbyFeature(artworksArray) {
     //     const featuredWorks = artworksArray.filter((element) => element.featured)
@@ -30,43 +29,70 @@ function Limbism() {
     //     setArtworks(artworksArray)
     // }
 
-    function sortArtworksbyFeature(artworksArray) {
-        setArtworks(artworksArray)
-    }
+    // function sortArtworksbyFeature(artworksArray) {
+    //     setArtworks(artworksArray)
+    // }
 
-    const featuredWorks = artworks.filter((element) => element.featured)
-
-    
+    // const featuredWorks = artworks.filter((element) => element.featured)
 
     function onCategoryFilter(selectedFilter) {
         setFilterTerm(selectedFilter)
-
+        // filterWorks()
     }
 
-    const filteredArtworks = artworks
-        .filter((artwork) => (filterTerm === "all") ? true : artwork.category === filterTerm)
-        .filter((artwork) => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()))
-        .sort((artwork1, artwork2) => {
-            if (sortTerm === "AZ") {
-                return artwork1.title.toLowerCase() < artwork2.title.toLowerCase() ? -1 : 1
-            }
-            else if (sortTerm === "ZA") {
-                return artwork1.title.toLowerCase() > artwork2.title.toLowerCase() ? -1 : 1
-            }
-            else if (sortTerm === "price") {
-                return artwork1.price < artwork2.price ? -1 : 1
-            }
-            else if (sortTerm === "mostpopular") {
-                return artwork1.likes > artwork2.likes ? -1 : 1
-            }
-            else if (sortTerm === "edition") {
-                return artwork1.edition < artwork2.edition ? -1 : 1
-            }
-            else {
-                return artwork1["date created"] > artwork2["date created"] ? -1 : 1
-            }
-        })
-    //refactor with a switch^^^^
+    // const filteredArtworks = artworks
+    //     .filter((artwork) => (filterTerm === "all") ? true : artwork.category === filterTerm)
+    //     .filter((artwork) => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    //     .sort((artwork1, artwork2) => {
+    //         if (sortTerm === "AZ") {
+    //             return artwork1.title.toLowerCase() < artwork2.title.toLowerCase() ? -1 : 1
+    //         }
+    //         else if (sortTerm === "ZA") {
+    //             return artwork1.title.toLowerCase() > artwork2.title.toLowerCase() ? -1 : 1
+    //         }
+    //         else if (sortTerm === "price") {
+    //             return artwork1.price < artwork2.price ? -1 : 1
+    //         }
+    //         else if (sortTerm === "mostpopular") {
+    //             return artwork1.likes > artwork2.likes ? -1 : 1
+    //         }
+    //         else if (sortTerm === "edition") {
+    //             return artwork1.edition < artwork2.edition ? -1 : 1
+    //         }
+    //         else {
+    //             return artwork1["date created"] > artwork2["date created"] ? -1 : 1
+    //         }
+    //     })
+
+    // function filterWorks() {
+        const filteredArtworks = artworks
+            .filter((artwork) => (filterTerm === "all") ? true : artwork.category === filterTerm)
+            .filter((artwork) => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()))
+            .sort((artwork1, artwork2) => {
+                switch (sortTerm) {
+                    case "AZ":
+                        return artwork1.title.toLowerCase() < artwork2.title.toLowerCase() ? -1 : 1
+                        break;
+                    case "ZA":
+                        return artwork1.title.toLowerCase() > artwork2.title.toLowerCase() ? -1 : 1
+                        break;
+                    case "price":
+                        return artwork1.price < artwork2.price ? -1 : 1
+                        break;
+
+                    case "mostpopular":
+                        return artwork1.likes > artwork2.likes ? -1 : 1
+                        break;
+                    case "edition":
+                        return artwork1.edition < artwork2.edition ? -1 : 1
+                        break;
+                    case "newest":
+                        return artwork1["date created"] > artwork2["date created"] ? -1 : 1
+                }
+            })
+    // }
+
+
 
 
     // function updateLikes(artworkObj) {
@@ -74,19 +100,21 @@ function Limbism() {
     //     const newArray = featuredArt.map((art) => (art.id === artworkObj.id) ? artworkObj : art)
     //     setFeaturedArt(newArray)
     // }
-    
+
     function updateLikes(artworkObj) {
         console.log(artworkObj)
-        const newArray = artworks.map((art) => (art.id === artworkObj.id) ? artworkObj : art)
-        setArtworks(newArray)
+        const updatedLikesArray = artworks.map((art) => (art.id === artworkObj.id) ? artworkObj : art)
+        setArtworks(updatedLikesArray)
     }
 
     function onSortChange(selectedSort) {
         setSortTerm(selectedSort)
+        // filterWorks()
     }
 
     function onSearch(searchWord) {
         setSearchTerm(searchWord)
+        // filterWorks()
     }
 
     function onReset(checked) {
@@ -96,37 +124,34 @@ function Limbism() {
         }
         console.log("updated artworks array")
     }
-//this function is not working ^^^^ it's supposed to reset all filters to the original array
+    //this function is not working ^^^^ it's supposed to reset all filters to the original array
 
-    function onAddNewArt(newArtworkObj){
+
+    function onEditArt(editedArtObj) {
         const updatedWorks = artworks.map((artwork) => {
-            if (artwork.id === newArtworkObj.id){
-                // const index = artwork.findIndex()
-                // const arrayBeforeChange = artworks.slice(0, index)
-                // const arrayAfterChange = artworks.slice(index + 1)
-                // return [...arrayBeforeChange, newArtworkObj, ...arrayAfterChange]
-                console.log("this work already exists")
-                //replace old object with a new one
-                //setArtworks to this updated obj + old array (...spread, obj)
-                return newArtworkObj
+            if (artwork.id === editedArtObj.id) {
+                return editedArtObj
             }
             else {
-                // return [...artworks, newArtworkObj]
-                console.log("this is new work")
                 return artwork
             }
         })
-       setArtworks(updatedWorks) 
+        setArtworks(updatedWorks)
     }
 
-    function onSearchEdit(searchEditValue){
+    function onAddNewArt(postedArtwork) {
+        console.log("this is new work")
+        setArtworks([...artworks, postedArtwork])
+    }
+
+    function onSearchEdit(searchEditValue) {
         setSearchTermEdit(searchEditValue)
     }
-function onDelete(id){
-console.log(id)
-const deletedArtwork = artworks.filter((artwork) => artwork.id !== id)
-setArtworks(deletedArtwork)
-}
+    function onDelete(id) {
+        console.log(id)
+        const deletedArtwork = artworks.filter((artwork) => artwork.id !== id)
+        setArtworks(deletedArtwork)
+    }
     const editableArtWork = artworks.filter((artwork) => artwork.title.toLowerCase().includes(searchTermEdit))
 
     return (
@@ -134,31 +159,34 @@ setArtworks(deletedArtwork)
             <Switch >
                 <Route exact path="/">
                     {/* <FeaturedItemsList featuredArt={featuredArt} updateLikes={updateLikes} /> */}
-                    <FeaturedItemsList featuredArt={featuredWorks} updateLikes={updateLikes} />
+                    {/* <FeaturedItemsList featuredArt={featuredWorks} updateLikes={updateLikes} /> */}
+                    <FeaturedItemsList featuredArt={artworks} updateLikes={updateLikes} />
                 </Route>
                 <Route exact path="/about">
                     <About />
                 </Route>
                 <Route exact path="/gallery">
                     <Gallery
-                        artworks={filteredArtworks}
+                        filteredArtworks={filteredArtworks}
+                        artworks={artworks}
                         onCategoryFilter={onCategoryFilter}
                         onSortChange={onSortChange}
                         searchTerm={searchTerm}
                         onSearch={onSearch}
                         onReset={onReset}
-                        // updateLikes={updateGalleryLikes}
+                    // updateLikes={updateGalleryLikes}
                     />
                 </Route>
                 <Route exact path="/contact">
                     <Contact />
                 </Route>
                 <Route exact path="/admin">
-                    <Admin 
-                    onAddNewArt={onAddNewArt} 
-                    onSearchEdit={onSearchEdit} 
-                    editableArtWork={editableArtWork}
-                    onDelete={onDelete}
+                    <Admin
+                        onAddNewArt={onAddNewArt}
+                        onEditArt={onEditArt}
+                        onSearchEdit={onSearchEdit}
+                        editableArtWork={editableArtWork}
+                        onDelete={onDelete}
                     />
                 </Route>
             </Switch>

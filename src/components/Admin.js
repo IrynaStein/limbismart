@@ -1,6 +1,7 @@
 import { useState } from "react"
+import { Container, Segment } from "semantic-ui-react"
 
-function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
+function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt }) {
     const defaultState = {
         title: "",
         edition: 0,
@@ -18,6 +19,11 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
             <img className="ui avatar image" src={artwork.image} alt="artwork" />
             <div className="content">
                 <div className="header">{artwork.title}</div>
+                <p>{artwork.medium}; 
+                edition: {artwork.edition}; 
+                date created: {artwork["date created"]}; 
+                price: {artwork.price}
+                </p>
                 <div className="ui buttons">
                     <button className="ui button" onClick={(e) => handleDelete(artwork.id)}>Delete</button>
                     <div className="or"></div>
@@ -37,12 +43,10 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
     }
 
     function handleEdit(artwork) {
-
         console.log(artwork)
         setFormData(artwork)
 
     }
-    console.log(formData.id)
 
     function handleChange(e) {
         console.log(e.target.value)
@@ -70,7 +74,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
         if (formData.id) {
             fetch(`https://safe-temple-39376.herokuapp.com/artworks/${formData.id}`, configObj2)
                 .then(resp => resp.json())
-                .then(data => onAddNewArt(data))
+                .then(data => onEditArt(data))
             setFormData(defaultState)
         }
         else {
@@ -147,9 +151,11 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete }) {
                 </div>
                 <button className="ui button" type="submit">{formData.id ? "Update the artwork" : "Upload new artwork"}</button>
             </form>
-            <div className="ui list">
-                {listOfArtworks}
-            </div>
+            <Segment style={{ overflow: 'auto', maxHeight: 200 }}>
+                <div className="ui list">
+                    {listOfArtworks}
+                </div>
+            </Segment>
         </div>
     )
 }

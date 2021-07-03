@@ -2,9 +2,11 @@ import FeaturedItem from "./FeaturedItem";
 
 function FeaturedItemsList({ featuredArt, updateLikes }) {
 
-  const renderArtworks = featuredArt.map((artwork) => (
-    <FeaturedItem key={artwork.title} artwork={artwork} updateLikes={updateLikes}/>
-  ))
+  const renderArtworks = featuredArt.map((artwork) => {
+    if (artwork.featured){
+      return <FeaturedItem key={artwork.title} artwork={artwork} updateLikes={updateLikes}/>
+    }
+  })
 
   return (
     <div>
