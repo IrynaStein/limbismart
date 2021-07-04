@@ -62,7 +62,7 @@ function FeaturedItem({ artwork, updateLikes }) {
                                 <i className={!isLiked ? "heart outline like icon" : "red heart icon"} />
                                 {likes}
                             </span>
-                            <span onClick={(e) => handleShowMoreInfo(e)}>
+                            <span style={{cursor:'pointer'}} onClick={(e) => handleShowMoreInfo(e)}>
                                 <i className="info circle icon" />
                                 {showInfo ? "less info" : "more info"}
                             </span>

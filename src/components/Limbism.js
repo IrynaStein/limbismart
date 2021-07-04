@@ -37,7 +37,7 @@ function Limbism() {
 
     function onCategoryFilter(selectedFilter) {
         setFilterTerm(selectedFilter)
-        // filterWorks()
+       
     }
 
     // const filteredArtworks = artworks
@@ -64,42 +64,33 @@ function Limbism() {
     //         }
     //     })
 
-    // function filterWorks() {
-        const filteredArtworks = artworks
-            .filter((artwork) => (filterTerm === "all") ? true : artwork.category === filterTerm)
-            .filter((artwork) => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()))
-            .sort((artwork1, artwork2) => {
-                switch (sortTerm) {
-                    case "AZ":
-                        return artwork1.title.toLowerCase() < artwork2.title.toLowerCase() ? -1 : 1
-                        break;
-                    case "ZA":
-                        return artwork1.title.toLowerCase() > artwork2.title.toLowerCase() ? -1 : 1
-                        break;
-                    case "price":
-                        return artwork1.price < artwork2.price ? -1 : 1
-                        break;
+    
+    const filteredArtworks = artworks
+        .filter((artwork) => (filterTerm === "all") ? true : artwork.category === filterTerm)
+        .filter((artwork) => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()))
+        .sort((artwork1, artwork2) => {
+            switch (sortTerm) {
+                case "AZ":
+                    return artwork1.title.toLowerCase() < artwork2.title.toLowerCase() ? -1 : 1
+                    break;
+                case "ZA":
+                    return artwork1.title.toLowerCase() > artwork2.title.toLowerCase() ? -1 : 1
+                    break;
+                case "price":
+                    return artwork1.price < artwork2.price ? -1 : 1
+                    break;
 
-                    case "mostpopular":
-                        return artwork1.likes > artwork2.likes ? -1 : 1
-                        break;
-                    case "edition":
-                        return artwork1.edition < artwork2.edition ? -1 : 1
-                        break;
-                    case "newest":
-                        return artwork1["date created"] > artwork2["date created"] ? -1 : 1
-                }
-            })
-    // }
-
-
-
-
-    // function updateLikes(artworkObj) {
-    //     console.log(artworkObj)
-    //     const newArray = featuredArt.map((art) => (art.id === artworkObj.id) ? artworkObj : art)
-    //     setFeaturedArt(newArray)
-    // }
+                case "mostpopular":
+                    return artwork1.likes > artwork2.likes ? -1 : 1
+                    break;
+                case "edition":
+                    return artwork1.edition < artwork2.edition ? -1 : 1
+                    break;
+                case "newest":
+                    return artwork1["date created"] > artwork2["date created"] ? -1 : 1
+            }
+        })
+   
 
     function updateLikes(artworkObj) {
         console.log(artworkObj)
@@ -107,14 +98,15 @@ function Limbism() {
         setArtworks(updatedLikesArray)
     }
 
+
     function onSortChange(selectedSort) {
         setSortTerm(selectedSort)
-        // filterWorks()
+    
     }
 
     function onSearch(searchWord) {
         setSearchTerm(searchWord)
-        // filterWorks()
+    
     }
 
     function onReset(checked) {
@@ -147,12 +139,21 @@ function Limbism() {
     function onSearchEdit(searchEditValue) {
         setSearchTermEdit(searchEditValue)
     }
+
     function onDelete(id) {
         console.log(id)
         const deletedArtwork = artworks.filter((artwork) => artwork.id !== id)
         setArtworks(deletedArtwork)
     }
-    const editableArtWork = artworks.filter((artwork) => artwork.title.toLowerCase().includes(searchTermEdit))
+
+    const editableArtWork = artworks.filter((artwork) => {
+        if (searchTermEdit.toLowerCase() === "*featured") {
+            return artwork.featured 
+        }
+        else {
+            return artwork.title.toLowerCase().includes(searchTermEdit)
+        }
+    })
 
     return (
         <Container >
@@ -174,7 +175,7 @@ function Limbism() {
                         searchTerm={searchTerm}
                         onSearch={onSearch}
                         onReset={onReset}
-                    // updateLikes={updateGalleryLikes}
+                    updateLikes={updateLikes}
                     />
                 </Route>
                 <Route exact path="/contact">

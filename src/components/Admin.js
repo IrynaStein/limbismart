@@ -21,6 +21,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
                 <div className="header">{artwork.title} </div>
                 <p>description: <em>{artwork.medium}; </em>
                 edition: <em>{artwork.edition}; </em>
+                category: <em>{artwork.category}; </em>
                 date created: <em>{artwork["date created"]}; </em>
                 price: $<em>{artwork.price}. </em>
                 </p>
@@ -147,7 +148,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
                 <div className="field">
                     <div className="ui toggle checkbox">
                         <input type="checkbox" onChange={handleFeatureChange} checked={formData.featured} />
-                        <label>Make this work a featured image</label>
+                        <label>Make this artwork a featured image</label>
                     </div>
                 </div>
                 <div className="field">
@@ -160,7 +161,8 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
             <div className="inline-items">
             <div className="ui blue empty circular label"></div> &nbsp; &nbsp;
       
-            <p style={{fontSize: "11px"}}><em>appears when the artwork is featured</em></p>
+            <p className="tooltip" style={{fontSize: "11px"}}><em>appears when the artwork is featured</em>
+            <span className="tooltiptext" style={{fontSize: "13px"}}>type <b>*featured</b> in a search box above to list featured images only</span></p>
             </div>
             <div className="ui segment" style={{ overflow: 'auto', maxHeight: 200 }}>
                 <div className="ui list">

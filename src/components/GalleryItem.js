@@ -1,51 +1,49 @@
 import { useState } from "react"
 
 function GalleryItem({ artwork, updateLikes }) {
-    const { title, image, likes, edition, medium, price, "date created": date } = artwork
+    const { id, title, image, likes, edition, medium, price, "date created": date } = artwork
     const [isLiked, setIsLiked] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
     const [showModal, setShowModal] =useState(false)
 
 
     function handleClick(e) {
-        console.log(e)
         setIsLiked(mUV => !mUV)
+        if (isLiked) {
+        fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
+            method: "PATCH",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({
+                "likes": likes - 1
+            })
+        })
+            .then(resp => resp.json())
+            .then(data => updateLikes(data))
     }
-
-    function handleShowMoreInfo(e) {
-        setShowInfo((mUV) => !mUV)
+    else {
+        fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
+            method: "PATCH",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({
+                "likes": likes + 1
+            })
+        })
+            .then(resp => resp.json())
+            .then(data => updateLikes(data))
+    }
     }
 
 //I am not able to implement the same PATCH request as I did in featuredItems component, 
 //because on Limbism page I am passign down filtered array instead of the original one
 
-    // if (isLiked) {
-    //     fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
-    //         method: "PATCH",
-    //         headers: { "Content-type": "application/json" },
-    //         body: JSON.stringify({
-    //             "likes": likes - 1
-    //         })
-    //     })
-    //         .then(resp => resp.json())
-    //         .then(data => updateLikes(data))
-    // }
-    // else {
-    //     fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
-    //         method: "PATCH",
-    //         headers: { "Content-type": "application/json" },
-    //         body: JSON.stringify({
-    //             "likes": likes + 1
-    //         })
-    //     })
-    //         .then(resp => resp.json())
-    //         .then(data => updateLikes(data))
-    // }
+    function handleShowMoreInfo(e) {
+        setShowInfo((mUV) => !mUV)
+    }
 
-
+    
     return (
         <div>
-            <div className={showModal ? "ui active small modal" : "ui modal"} style={{position: 'absolute', left: 100}}>
+            <div className={showModal ? "ui active small modal" : "ui modal"} style={{position: 'absolute', left: 0}}>
                         <div className="header">{title}</div>
                         <div className="image content">
                             <div className="image" >
@@ -69,10 +67,10 @@ function GalleryItem({ artwork, updateLikes }) {
                             <i className={!isLiked ? "heart outline like icon" : "red heart icon"} />
                             {likes}
                         </span>
-                        <span onClick={(e) => handleShowMoreInfo(e)}>
+                        <div style={{cursor:'pointer'}} onClick={(e) => handleShowMoreInfo(e)}>
                             <i className="info circle icon" />
                             {showInfo ? "less info" : "more info"}
-                        </span>
+                        </div>
                     </div>
                     <div className="extra content" style={{ display: showInfo ? "block" : "none" }}>
                         <div className="ui large transparent left icon input">
