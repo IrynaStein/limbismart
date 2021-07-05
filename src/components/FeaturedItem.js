@@ -25,7 +25,7 @@ function FeaturedItem({ artwork, updateLikes }) {
                 method: "PATCH",
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify({
-                    "likes": likes + 1
+                    "likes": parseInt(likes + 1)
                 })
             })
                 .then(resp => resp.json())
@@ -80,7 +80,7 @@ function FeaturedItem({ artwork, updateLikes }) {
                             <br />
                             <span className="right floated">
                                 <div className="ui vertical animated button" tabIndex="0">
-                                    <a href="https://www.etsy.com/shop/ArtPrintsByLimbism?ref=seller-platform-mcnav" className="hidden content">Shop</a>
+                                    <a href="https://www.etsy.com/shop/ArtPrintsByLimbism?ref=seller-platform-mcnav" target="_blank" className="hidden content">Shop</a>
                                     <div className="visible content">
                                         <i className="shop icon"></i>
                                     </div>

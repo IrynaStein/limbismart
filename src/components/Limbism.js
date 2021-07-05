@@ -109,13 +109,19 @@ function Limbism() {
     
     }
 
-    function onReset(checked) {
-        console.log(checked)
-        if (checked) {
-            setArtworks(artworks)
+    function onReset() {
+        // console.log(checked)
+        // if (checked) {
+        //     // const unsortedarray = artworks.sort((artwork1, artwork2) => artwork1.id < artwork2.id)
+        //     // setArtworks(unsortedarray)
+        //     // console.log(unsortedarray)
+        console.log("cleared")
+            setSortTerm("all")
+            setSearchTerm("")
+            setFilterTerm("all")
         }
-        console.log("updated artworks array")
-    }
+    //     console.log("updated artworks array")
+    // }
     //this function is not working ^^^^ it's supposed to reset all filters to the original array
 
 
@@ -147,7 +153,7 @@ function Limbism() {
     }
 
     const editableArtWork = artworks.filter((artwork) => {
-        if (searchTermEdit.toLowerCase() === "*featured") {
+        if (searchTermEdit.toLowerCase() === "***") {
             return artwork.featured 
         }
         else {
@@ -169,7 +175,7 @@ function Limbism() {
                 <Route exact path="/gallery">
                     <Gallery
                         filteredArtworks={filteredArtworks}
-                        artworks={artworks}
+                        // artworks={artworks}
                         onCategoryFilter={onCategoryFilter}
                         onSortChange={onSortChange}
                         searchTerm={searchTerm}

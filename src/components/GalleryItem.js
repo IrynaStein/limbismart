@@ -43,7 +43,7 @@ function GalleryItem({ artwork, updateLikes }) {
     
     return (
         <div>
-            <div className={showModal ? "ui active small modal" : "ui modal"} style={{position: 'absolute', left: 0}}>
+            <div className={showModal ? "ui active small modal" : "ui modal"} style={{position: 'absolute', left: 130}}>
                         <div className="header">{title}</div>
                         <div className="image content">
                             <div className="image" >
@@ -85,7 +85,7 @@ function GalleryItem({ artwork, updateLikes }) {
                         <br />
                         <span className="right floated">
                             <div className="ui vertical animated button" tabIndex="0">
-                                <a href="https://www.etsy.com/shop/ArtPrintsByLimbism?ref=seller-platform-mcnav" className="hidden content">Shop</a>
+                                <a href="https://www.etsy.com/shop/ArtPrintsByLimbism?ref=seller-platform-mcnav" target="_blank" className="hidden content">Shop</a>
                                 <div className="visible content">
                                     <i className="shop icon"></i>
                                 </div>

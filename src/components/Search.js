@@ -12,8 +12,8 @@ function Search({ onCategoryFilter, onSortChange, searchTerm, onSearch, onReset 
         onSearch(e.target.value)
     }
 
-    function handleClearChange(e){
-        onReset(e.target.checked)
+    function handleClearChange() {
+        onReset()
     }
 
     return (
@@ -57,12 +57,10 @@ function Search({ onCategoryFilter, onSortChange, searchTerm, onSearch, onReset 
                 </div>
                 <div className="ui hidden divider"></div>
             </div>
-
-            <div className="ui slider checkbox" style={{ margin: "30px" }}>
-                <input onClick={handleClearChange} type="checkbox" name="newsletter" />
-                <label>Clear all filters</label>
-            </div>
-
+            <button onClick={handleClearChange} className="circular ui icon basic button" style={{ margin: "30px" }}>
+                <i className="redo icon"></i> &nbsp; &nbsp;
+                <label style={{ fontSize: "12px" }}>Clear all filters</label> &nbsp; &nbsp;
+            </button>
         </div>
     )
 }

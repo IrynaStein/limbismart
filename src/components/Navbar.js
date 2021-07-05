@@ -18,18 +18,19 @@ function Navbar() {
                 </NavLink>
                 <div className="ui horizontal divider"></div>
                 <div style={{ paddingLeft: '19px' }}>
-                    <a href="https://www.instagram.com/limbism/?hl=en">
+                    <a href="https://www.instagram.com/limbism/?hl=en" target="_blank">
                         <i className="instagram icon" />
                     </a>
-                    <a href="https://www.facebook.com/Limbism/">
+                    <a href="https://www.facebook.com/Limbism/" target="_blank">
                         <i className="facebook f icon"></i>
                     </a>
-                    <a href="https://www.etsy.com/shop/ArtPrintsByLimbism?ref=seller-platform-mcnav">
+                    <a href="https://www.etsy.com/shop/ArtPrintsByLimbism?ref=seller-platform-mcnav" target="_blank">
                         <i className="etsy icon" />
                     </a>
                     <div className="ui horizontal divider"></div>
                     <div className="ui center aligned container">
-                        <a href="https://opensea.io/LIMBISM" className="ui pointing blue basic label" style={{ float: 'left' }}>Shop NFTs</a>
+                        <a href="https://opensea.io/LIMBISM" target="_blank" className="ui pointing blue basic label" style={{ float: 'left' }}>Shop NFTs</a>
+                        <div className="ui hidden divider"></div>
                     </div>
                 </div>
             </div>

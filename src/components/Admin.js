@@ -1,3 +1,4 @@
+import { Link, Route } from "react-router-dom"
 import { useState } from "react"
 
 function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt }) {
@@ -5,6 +6,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
         title: "",
         edition: 0,
         likes: 0,
+        price: 0,
         medium: "",
         image: "",
         featured: false,
@@ -16,14 +18,14 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
     const listOfArtworks = editableArtWork.map((artwork) => (
         <div className="item" key={artwork.id}>
             <img className="ui mini circular image" src={artwork.image} alt="artwork" />
-            <div className={artwork.featured? "ui blue empty circular label": ""}></div>
+            <div className={artwork.featured ? "ui blue empty circular label" : ""}></div>
             <div className="content">
                 <div className="header">{artwork.title} </div>
                 <p>description: <em>{artwork.medium}; </em>
-                edition: <em>{artwork.edition}; </em>
-                category: <em>{artwork.category}; </em>
-                date created: <em>{artwork["date created"]}; </em>
-                price: $<em>{artwork.price}. </em>
+                    edition: <em>{artwork.edition}; </em>
+                    category: <em>{artwork.category}; </em>
+                    date created: <em>{artwork["date created"]}; </em>
+                    price: $<em>{artwork.price}. </em>
                 </p>
                 <div className="ui buttons">
                     <button className="ui button" onClick={(e) => handleDelete(artwork.id)}>Delete</button>
@@ -45,12 +47,10 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
     }
 
     function handleEdit(artwork) {
-
         console.log(artwork)
         setFormData(artwork)
 
     }
-    console.log(formData.id)
 
     function handleChange(e) {
         console.log(e.target.value)
@@ -65,15 +65,36 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
     function handleSubmit(e) {
         e.preventDefault()
         setFormData(formData)
+        console.log(formData)
         const configObj = {
             method: "POST",
             headers: { "Content-type": "application/json" },
-            body: JSON.stringify(formData)
+            body: JSON.stringify({
+                title: formData.title,
+                edition: parseInt(formData.edition),
+                likes: parseInt(formData.likes),
+                price: parseFloat(formData.price),
+                medium: formData.medium,
+                image: formData.image,
+                featured: formData.featured,
+                category: formData.category,
+                "date created": parseInt(formData["date created"])
+            })
         }
         const configObj2 = {
             method: "PATCH",
             headers: { "Content-type": "application/json" },
-            body: JSON.stringify(formData)
+            body: JSON.stringify({
+                title: formData.title,
+                edition: parseInt(formData.edition),
+                likes: parseInt(formData.likes),
+                price: parseFloat(formData.price),
+                medium: formData.medium,
+                image: formData.image,
+                featured: formData.featured,
+                category: formData.category,
+                "date created": parseInt(formData["date created"])
+            })
         }
         if (formData.id) {
             fetch(`https://safe-temple-39376.herokuapp.com/artworks/${formData.id}`, configObj2)
@@ -95,6 +116,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
 
     return (
         <div >
+            {/* <Route path="/artwork/:id"/> */}
             <div className="ui center aligned container">
                 <div className="ui category search">
                     <div className="ui icon input">
@@ -159,10 +181,10 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
             </form>
             <div className="ui hidden divider"></div>
             <div className="inline-items">
-            <div className="ui blue empty circular label"></div> &nbsp; &nbsp;
-      
-            <p className="tooltip" style={{fontSize: "11px"}}><em>appears when the artwork is featured</em>
-            <span className="tooltiptext" style={{fontSize: "13px"}}>type <b>*featured</b> in a search box above to list featured images only</span></p>
+                <div className="ui blue empty circular label"></div> &nbsp; &nbsp;
+
+                <span className="tooltip" style={{ fontSize: "11px" }}><em>featured item idicator</em>
+                    <span className="tooltiptext" style={{ fontSize: "12px" }}>Appears next to the artwork when  it's currently being featured on main page. Type <b>***</b> in a search box above to list featured images only</span>&nbsp;<i className="question circle outline icon"></i></span>
             </div>
             <div className="ui segment" style={{ overflow: 'auto', maxHeight: 200 }}>
                 <div className="ui list">
