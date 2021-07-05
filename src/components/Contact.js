@@ -1,4 +1,5 @@
 import { useState } from "react";
+import zapierUrl from "../zapier";
 
 function Contact() {
     const defaultForm = {
@@ -21,7 +22,7 @@ function Contact() {
     function handleSubmit(e) {
         e.preventDefault()
         setIsSent(true)
-        fetch("https://hooks.zapier.com/hooks/catch/10478432/b3k55dz/", {
+        fetch(zapierUrl, {
             method: "POST",
             body: JSON.stringify({ formData })
         })
