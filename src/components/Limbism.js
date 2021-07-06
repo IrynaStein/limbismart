@@ -6,12 +6,12 @@ import Gallery from "./Gallery"
 import Contact from "./Contact"
 import Admin from "./Admin"
 import { Container } from 'semantic-ui-react'
+import ShowPage from "./ShowPage"
 
 
 
 function Limbism() {
     const [artworks, setArtworks] = useState([])
-    // const [featuredArt, setFeaturedArt] = useState([])
     const [filterTerm, setFilterTerm] = useState("all")
     const [sortTerm, setSortTerm] = useState("all")
     const [searchTerm, setSearchTerm] = useState("")
@@ -23,48 +23,11 @@ function Limbism() {
             .then(data => setArtworks(data))
     }, [])
 
-    // function sortArtworksbyFeature(artworksArray) {
-    //     const featuredWorks = artworksArray.filter((element) => element.featured)
-    //     setFeaturedArt(featuredWorks)
-    //     setArtworks(artworksArray)
-    // }
-
-    // function sortArtworksbyFeature(artworksArray) {
-    //     setArtworks(artworksArray)
-    // }
-
-    // const featuredWorks = artworks.filter((element) => element.featured)
 
     function onCategoryFilter(selectedFilter) {
         setFilterTerm(selectedFilter)
-       
     }
 
-    // const filteredArtworks = artworks
-    //     .filter((artwork) => (filterTerm === "all") ? true : artwork.category === filterTerm)
-    //     .filter((artwork) => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()))
-    //     .sort((artwork1, artwork2) => {
-    //         if (sortTerm === "AZ") {
-    //             return artwork1.title.toLowerCase() < artwork2.title.toLowerCase() ? -1 : 1
-    //         }
-    //         else if (sortTerm === "ZA") {
-    //             return artwork1.title.toLowerCase() > artwork2.title.toLowerCase() ? -1 : 1
-    //         }
-    //         else if (sortTerm === "price") {
-    //             return artwork1.price < artwork2.price ? -1 : 1
-    //         }
-    //         else if (sortTerm === "mostpopular") {
-    //             return artwork1.likes > artwork2.likes ? -1 : 1
-    //         }
-    //         else if (sortTerm === "edition") {
-    //             return artwork1.edition < artwork2.edition ? -1 : 1
-    //         }
-    //         else {
-    //             return artwork1["date created"] > artwork2["date created"] ? -1 : 1
-    //         }
-    //     })
-
-    
     const filteredArtworks = artworks
         .filter((artwork) => (filterTerm === "all") ? true : artwork.category === filterTerm)
         .filter((artwork) => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -72,25 +35,19 @@ function Limbism() {
             switch (sortTerm) {
                 case "AZ":
                     return artwork1.title.toLowerCase() < artwork2.title.toLowerCase() ? -1 : 1
-                    break;
                 case "ZA":
                     return artwork1.title.toLowerCase() > artwork2.title.toLowerCase() ? -1 : 1
-                    break;
                 case "price":
                     return artwork1.price < artwork2.price ? -1 : 1
-                    break;
-
                 case "mostpopular":
                     return artwork1.likes > artwork2.likes ? -1 : 1
-                    break;
                 case "edition":
                     return artwork1.edition < artwork2.edition ? -1 : 1
-                    break;
                 case "newest":
                     return artwork1["date created"] > artwork2["date created"] ? -1 : 1
             }
         })
-   
+
 
     function updateLikes(artworkObj) {
         console.log(artworkObj)
@@ -98,32 +55,20 @@ function Limbism() {
         setArtworks(updatedLikesArray)
     }
 
-
     function onSortChange(selectedSort) {
         setSortTerm(selectedSort)
-    
     }
 
     function onSearch(searchWord) {
         setSearchTerm(searchWord)
-    
     }
 
     function onReset() {
-        // console.log(checked)
-        // if (checked) {
-        //     // const unsortedarray = artworks.sort((artwork1, artwork2) => artwork1.id < artwork2.id)
-        //     // setArtworks(unsortedarray)
-        //     // console.log(unsortedarray)
         console.log("cleared")
-            setSortTerm("all")
-            setSearchTerm("")
-            setFilterTerm("all")
-        }
-    //     console.log("updated artworks array")
-    // }
-    //this function is not working ^^^^ it's supposed to reset all filters to the original array
-
+        setSortTerm("all")
+        setSearchTerm("")
+        setFilterTerm("all")
+    }
 
     function onEditArt(editedArtObj) {
         const updatedWorks = artworks.map((artwork) => {
@@ -154,7 +99,7 @@ function Limbism() {
 
     const editableArtWork = artworks.filter((artwork) => {
         if (searchTermEdit.toLowerCase() === "***") {
-            return artwork.featured 
+            return artwork.featured
         }
         else {
             return artwork.title.toLowerCase().includes(searchTermEdit)
@@ -165,8 +110,6 @@ function Limbism() {
         <Container >
             <Switch >
                 <Route exact path="/">
-                    {/* <FeaturedItemsList featuredArt={featuredArt} updateLikes={updateLikes} /> */}
-                    {/* <FeaturedItemsList featuredArt={featuredWorks} updateLikes={updateLikes} /> */}
                     <FeaturedItemsList featuredArt={artworks} updateLikes={updateLikes} />
                 </Route>
                 <Route exact path="/about">
@@ -175,13 +118,12 @@ function Limbism() {
                 <Route exact path="/gallery">
                     <Gallery
                         filteredArtworks={filteredArtworks}
-                        // artworks={artworks}
                         onCategoryFilter={onCategoryFilter}
                         onSortChange={onSortChange}
                         searchTerm={searchTerm}
                         onSearch={onSearch}
                         onReset={onReset}
-                    updateLikes={updateLikes}
+                        updateLikes={updateLikes}
                     />
                 </Route>
                 <Route exact path="/contact">
@@ -195,6 +137,9 @@ function Limbism() {
                         editableArtWork={editableArtWork}
                         onDelete={onDelete}
                     />
+                </Route>
+                <Route exact path="/showpage/:id">
+                    <ShowPage filteredArtworks={filteredArtworks}/>
                 </Route>
             </Switch>
             <div className="ui hidden divider"></div>

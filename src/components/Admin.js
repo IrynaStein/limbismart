@@ -1,5 +1,5 @@
-import { Link, Route } from "react-router-dom"
-import { useState } from "react"
+import { Link } from "react-router-dom"
+import { useState, useHistory } from "react"
 
 function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt }) {
     const defaultState = {
@@ -15,12 +15,14 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
     }
     const [formData, setFormData] = useState(defaultState)
 
+    // const history = useHistory()
+
     const listOfArtworks = editableArtWork.map((artwork) => (
         <div className="item" key={artwork.id}>
             <img className="ui mini circular image" src={artwork.image} alt="artwork" />
             <div className={artwork.featured ? "ui blue empty circular label" : ""}></div>
             <div className="content">
-                <div className="header">{artwork.title} </div>
+                <Link to={`/showpage/${artwork.id}`}><div className="header">{artwork.title} </div></Link>
                 <p>description: <em>{artwork.medium}; </em>
                     edition: <em>{artwork.edition}; </em>
                     category: <em>{artwork.category}; </em>
@@ -32,7 +34,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
                     <div className="or"></div>
                     <button className="ui positive button" onClick={(e) => handleEdit(artwork)}>Edit</button>
                 </div>
-                <div class="ui section divider"></div>
+                <div className="ui section divider"></div>
             </div>
         </div>
     ))
@@ -55,8 +57,8 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
     function handleChange(e) {
         console.log(e.target.value)
         setFormData({ ...formData, [e.target.name]: e.target.value })
-
     }
+
     function handleFeatureChange(e) {
         console.log(e.target.checked)
         setFormData({ ...formData, "featured": e.target.checked })
@@ -108,6 +110,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
                 .then(data => onAddNewArt(data))
             setFormData(defaultState)
         }
+        // history.push("/showpage/:id")
     }
 
     function handleSearch(e) {
@@ -116,7 +119,6 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
 
     return (
         <div >
-            {/* <Route path="/artwork/:id"/> */}
             <div className="ui center aligned container">
                 <div className="ui category search">
                     <div className="ui icon input">
