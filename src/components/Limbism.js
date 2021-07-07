@@ -29,7 +29,7 @@ function Limbism() {
     }
 
     const filteredArtworks = artworks
-        .filter((artwork) => (filterTerm === "all") ? true : artwork.category === filterTerm)
+        .filter((artwork) => (filterTerm === "all") ? true : artwork.category === filterTerm)    
         .filter((artwork) => artwork.title.toLowerCase().includes(searchTerm.toLowerCase()))
         .sort((artwork1, artwork2) => {
             switch (sortTerm) {
@@ -45,6 +45,8 @@ function Limbism() {
                     return artwork1.edition < artwork2.edition ? -1 : 1
                 case "newest":
                     return artwork1["date created"] > artwork2["date created"] ? -1 : 1
+                default: 
+                return 1
             }
         })
 

@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import { useState, useHistory } from "react"
+import { Link, useHistory } from "react-router-dom"
+import { useState } from "react"
 
 function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt }) {
     const defaultState = {
@@ -15,24 +15,24 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
     }
     const [formData, setFormData] = useState(defaultState)
 
-    // const history = useHistory()
+    const history = useHistory()
 
     const listOfArtworks = editableArtWork.map((artwork) => (
         <div className="item" key={artwork.id}>
             <img className="ui mini circular image" src={artwork.image} alt="artwork" />
             <div className={artwork.featured ? "ui blue empty circular label" : ""}></div>
             <div className="content">
-                <Link to={`/showpage/${artwork.id}`}><div className="header">{artwork.title} </div></Link>
+                <Link to={`/showpage/${artwork.id}`}><div className="header"><b className="link">{artwork.title}</b></div></Link>
                 <p>description: <em>{artwork.medium}; </em>
                     edition: <em>{artwork.edition}; </em>
                     category: <em>{artwork.category}; </em>
                     date created: <em>{artwork["date created"]}; </em>
                     price: $<em>{artwork.price}. </em>
                 </p>
-                <div className="ui buttons">
-                    <button className="ui button" onClick={(e) => handleDelete(artwork.id)}>Delete</button>
+                <div className="ui mini buttons">
+                    <button className="ui grey button" onClick={(e) => handleDelete(artwork.id)}>Delete</button>
                     <div className="or"></div>
-                    <button className="ui positive button" onClick={(e) => handleEdit(artwork)}>Edit</button>
+                    <button className="ui blue button" onClick={(e) => handleEdit(artwork)}>Edit</button>
                 </div>
                 <div className="ui section divider"></div>
             </div>
@@ -101,16 +101,21 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
         if (formData.id) {
             fetch(`https://safe-temple-39376.herokuapp.com/artworks/${formData.id}`, configObj2)
                 .then(resp => resp.json())
-                .then(data => onEditArt(data))
+                .then(data => {
+                    onEditArt(data)
+                    history.push(`/showpage/${data.id}`)
+                })
             setFormData(defaultState)
         }
         else {
             fetch("https://safe-temple-39376.herokuapp.com/artworks", configObj)
                 .then(resp => resp.json())
-                .then(data => onAddNewArt(data))
+                .then(data => {
+                    onAddNewArt(data)
+                    history.push(`/showpage/${data.id}`)
+                })
             setFormData(defaultState)
         }
-        // history.push("/showpage/:id")
     }
 
     function handleSearch(e) {

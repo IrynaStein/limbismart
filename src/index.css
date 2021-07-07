@@ -74,3 +74,6 @@ code {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+.link { color: rgba(90, 151, 217, 1.0); } /* CSS link color (red) */
+.link:hover { color: lightblue; } /* CSS link hover (green) */

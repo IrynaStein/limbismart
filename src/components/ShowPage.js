@@ -17,14 +17,14 @@ function ShowPage({ filteredArtworks }) {
     }
     return (
         <div className="ui segment">
-            <button className="ui right floated labeled icon button" onClick={handleClick}>
+            <button className="ui right floated labeled icon mini button" onClick={handleClick}>
                 <i className="left chevron icon" />
                 Back
             </button>
             <div className="header" style={{ fontSize: "20px" }}>{item.title}</div>
-            <img className="ui centered medium image" src={item.image} />
+            <img className="ui centered medium image" src={item.image} alt="artwork"/>
             <p>{item.medium}</p>
-            <p>price: ${item.price} &nbsp; &nbsp;category: {item.category} &nbsp; &nbsp;date created: {item["date created"]} &nbsp; &nbsp;available edition numbers: "add to the object an array of numbers(shoudl be editable)</p>
+            <p>price: <b>${item.price}</b> &nbsp; &nbsp; category: <b>{item.category}</b> &nbsp; &nbsp; date created: <b>{item["date created"]}</b> &nbsp; &nbsp;available edition numbers: "currently under development"(Phase4)</p>
             <div className="extra content">
                 <p>
                     {item.title} has <b>{item.likes}</b>  <i className="red heart icon" /> as of <b>{date}</b> at <b>{time}</b>
