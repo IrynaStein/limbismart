@@ -22,7 +22,8 @@ function Contact() {
     function handleSubmit(e) {
         e.preventDefault()
         setIsSent(true)
-        fetch(zapierUrl, {
+        // fetch(zapierUrl, {
+            fetch("https://hooks.zapier.com/hooks/catch/10478432/b3k55dz/", {
             method: "POST",
             body: JSON.stringify({ formData })
         })
