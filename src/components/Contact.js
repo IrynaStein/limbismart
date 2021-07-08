@@ -1,5 +1,5 @@
 import { useState } from "react";
-import zapierUrl from "../zapier";
+// import zapierUrl from "../zapier";
 
 function Contact() {
     const defaultForm = {
@@ -91,7 +91,6 @@ function Contact() {
                 >
                 </textarea>
             </div>
-            {/*below change "success" to "warning"*/}
             {isSent? (<div className={success ? "ui success message" : "ui warning message"}>
                     <div className="header">Thank you for contacting us</div>
                     <p>One of our team members will get back you yor shortly!</p>
