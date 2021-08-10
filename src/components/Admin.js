@@ -7,13 +7,13 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
         edition: 0,
         likes: 0,
         price: 0,
-        medium: "",
+        medium: "",q
         image: "",
         featured: false,
         category: "",
         "date created": 0
     }
-    //some simple code 
+
     const [formData, setFormData] = useState(defaultState)
 
     const history = useHistory()
