@@ -7,7 +7,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
         edition: 0,
         likes: 0,
         price: 0,
-        medium: "",q
+        medium: "",
         image: "",
         featured: false,
         category: "",
