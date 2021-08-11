@@ -17,7 +17,7 @@ function Navbar() {
                     CONTACT
                 </NavLink>
                 <div className="ui horizontal divider"></div>
-                <div style={{ paddingLeft: '19px' }}>
+                <div className="ui basic segment" style={{ paddingLeft: '20px' }}>
                     <a href="https://www.instagram.com/limbism/?hl=en" target="_blank" rel="noreferrer">
                         <i className="instagram icon" />
                     </a>
@@ -27,8 +27,7 @@ function Navbar() {
                     <a href="https://www.etsy.com/shop/ArtPrintsByLimbism?ref=seller-platform-mcnav" target="_blank" rel="noreferrer">
                         <i className="etsy icon" />
                     </a>
-                    
-                    {/* <div className="ui horizontal divider"></div> */}
+                    <div className="ui horizontal divider"></div>
                 </div>
             </div>
         </div>

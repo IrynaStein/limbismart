@@ -54,7 +54,6 @@ function FeaturedItem({ artwork, updateLikes }) {
                             {title}
                         </div>
                         <div className="image">
-                            {/* <img src={image} alt="artwork" onMouseEnter={() => setShowModal(true)} onMouseLeave={() => setShowModal(false)} /> */}
                             <img src={image} alt="artwork" onClick={() => setShowModal(true)} />
                         </div>
                         <div className="content">

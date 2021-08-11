@@ -43,7 +43,6 @@ function Contact() {
             setSuccess(false)
         }
     }
-    console.log(success)
 
     return (
 

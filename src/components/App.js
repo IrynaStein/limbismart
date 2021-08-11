@@ -10,16 +10,14 @@ function App() {
   return (
     <div className="app">
       <Header />
-      {/* <div className="ui grid"> */}
-        <div className="ui relaxed grid">
-          <div className="four wide column">
+      
+      <div className="ui equal width grid">
         <Navbar />
-        </div>
-        <div className="twelve wide column">
+     
+       
         <Limbism />
+     
         </div>
-        </div>
-      {/* </div> */}
       <Footer />
     </div>
   );

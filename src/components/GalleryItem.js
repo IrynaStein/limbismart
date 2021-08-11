@@ -38,18 +38,18 @@ function GalleryItem({ artwork, updateLikes }) {
     }
 
     return (
-        <div>
-            <div className={showModal ? "ui active small modal" : "ui modal"} style={{ position: 'absolute', left: 130 }}>
+        <div className="column">
+            {/* <div className={showModal ? "ui active small modal" : "ui modal"} style={{ position: 'absolute', left: 130 }}>
                 <div className="header">{title}</div>
                 <div className="image content">
                     <div className="image" >
                         <img src={image} style={{ width: "675px" }} onClick={() => setShowModal(false)} alt="artwork" />
                     </div>
                 </div>
-            </div>
-            <div className="column">
+            </div> */}
+            {/* <div className="column"> */}
 
-                <div className="ui segment">
+                <div className="ui segment"> 
 
                     <div className="ui card">
                         <div className="centered content">
@@ -90,7 +90,7 @@ function GalleryItem({ artwork, updateLikes }) {
                         </div>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
         </div>
     )
 }
