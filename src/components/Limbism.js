@@ -53,7 +53,7 @@ function Limbism() {
 
 
     function updateLikes(artwork) {
-        console.log(artwork)
+        // console.log(artwork)
         const updatedLikesArray = artworks.map((art) => (art.id === artwork.id) ? artwork : art)
         setArtworks(updatedLikesArray)
     }
