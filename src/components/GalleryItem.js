@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 function GalleryItem({ artwork, updateLikes }) {
-    const { id, title, image, likes, edition, medium, price, "date created": date } = artwork
+    const { id, title, image, likes, edition, medium, price, date_created } = artwork
     const [isLiked, setIsLiked] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
     const [showModal, setShowModal] = useState(false)
@@ -74,7 +74,7 @@ function GalleryItem({ artwork, updateLikes }) {
                                     <li><b>edition:</b> {edition}</li>
                                     <li><b>description:</b> {medium}</li>
                                     <li><b>price:</b> ${price}</li>
-                                    <li><b>year:</b> {date}</li>
+                                    <li><b>year:</b> {date_created}</li>
 
                                 </p>
                             </div>
