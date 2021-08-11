@@ -5,7 +5,6 @@ function GalleryItem({ artwork, updateLikes }) {
     artwork;
   const [isLiked, setIsLiked] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
-  const [showModal, setShowModal] = useState(false);
 
   function handleClick(e) {
     setIsLiked((mUV) => !mUV);
@@ -37,15 +36,15 @@ function GalleryItem({ artwork, updateLikes }) {
   }
 
   return (
-      <div>
     <div className="column">
+       
       <div className="ui segment">
         <div className="ui card">
           <div className="centered content">
             <b>{title}</b>
           </div>
           <div className="image">
-            <img src={image} alt="artwork" onClick={() => setShowModal(true)} />
+            <img src={image} alt="artwork" />
           </div>
           <div className="content">
             <span onClick={(e) => handleClick(e)} className="right floated">
@@ -103,23 +102,6 @@ function GalleryItem({ artwork, updateLikes }) {
           </div>
         </div>
       </div>
-    </div>
-     {/* <div
-          className={showModal ? "ui active small modal" : "ui modal"}
-          style={{ position: "absolute", left: 130 }}
-        >
-          <div className="header">{title}</div>
-          <div className="image content">
-            <div className="image">
-              <img
-                src={image}
-                style={{ width: "675px" }}
-                onClick={() => setShowModal(false)}
-                alt="artwork"
-              />
-            </div>
-          </div>
-        </div> */}
     </div>
   );
 }
