@@ -11,7 +11,7 @@ function GalleryItem({ artwork, updateLikes }) {
   function handleClick(e) {
     setIsLiked((mUV) => !mUV);
     if (isLiked) {
-      fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
+      fetch(`https://limitless-reaches-06090.herokuapp.com/artworks/${id}`, {
         method: "PATCH",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({
@@ -19,9 +19,9 @@ function GalleryItem({ artwork, updateLikes }) {
         }),
       })
         .then((resp) => resp.json())
-        .then((data) => updateLikes(data));
+        .then((data) => updateLikes(data.artwork));
     } else {
-      fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
+      fetch(`https://limitless-reaches-06090.herokuapp.com/artworks/${id}`, {
         method: "PATCH",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({
@@ -29,7 +29,7 @@ function GalleryItem({ artwork, updateLikes }) {
         }),
       })
         .then((resp) => resp.json())
-        .then((data) => updateLikes(data));
+        .then((data) => updateLikes(data.artwork));
     }
   }
 
