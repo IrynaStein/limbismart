@@ -17,7 +17,7 @@ function GalleryItem({ artwork, updateLikes }) {
         }),
       })
         .then((resp) => resp.json())
-        .then((data) => updateLikes(data));
+        .then((data) => updateLikes(data.artwork));
     } else {
       fetch(`https://limitless-reaches-06090.herokuapp.com/artworks/${id}`, {
         method: "PATCH",
@@ -27,7 +27,7 @@ function GalleryItem({ artwork, updateLikes }) {
         }),
       })
         .then((resp) => resp.json())
-        .then((data) => updateLikes(data));
+        .then((data) => updateLikes(data.artwork));
     }
   }
 

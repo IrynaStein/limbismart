@@ -18,7 +18,7 @@ function FeaturedItem({ artwork, updateLikes }) {
                 })
             })
                 .then(resp => resp.json())
-                .then(data => updateLikes(data))
+                .then(data => updateLikes(data.artwork))
         }
         else {
             fetch(`https://limitless-reaches-06090.herokuapp.com/artworks/${id}`, {
@@ -29,7 +29,7 @@ function FeaturedItem({ artwork, updateLikes }) {
                 })
             })
                 .then(resp => resp.json())
-                .then(data => updateLikes(data))
+                .then(data => updateLikes(data.artwork))
         }
     }
 
