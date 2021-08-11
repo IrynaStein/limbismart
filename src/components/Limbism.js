@@ -66,7 +66,6 @@ function Limbism() {
     }
 
     function onReset() {
-        console.log("cleared")
         setSortTerm("all")
         setSearchTerm("")
         setFilterTerm("all")
