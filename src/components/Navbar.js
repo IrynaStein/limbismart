@@ -27,11 +27,8 @@ function Navbar() {
                     <a href="https://www.etsy.com/shop/ArtPrintsByLimbism?ref=seller-platform-mcnav" target="_blank" rel="noreferrer">
                         <i className="etsy icon" />
                     </a>
-                    <div className="ui horizontal divider"></div>
-                    <div className="ui center aligned container">
-                        <a href="https://opensea.io/LIMBISM" target="_blank" rel="noreferrer" className="ui pointing blue basic label" style={{ float: 'left' }}>Shop NFTs</a>
-                        <div className="ui hidden divider"></div>
-                    </div>
+                    
+                    {/* <div className="ui horizontal divider"></div> */}
                 </div>
             </div>
         </div>
