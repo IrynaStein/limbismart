@@ -14,21 +14,15 @@ function Gallery({ artworks, onCategoryFilter, onSortChange, searchTerm, onSearc
 
     return (
         <div>
-            <div className="ui left aligned basic segment">
-            <Search
+            <Search 
                 onCategoryFilter={onCategoryFilter}
                 onSortChange={onSortChange}
                 searchTerm={searchTerm}
                 onSearch={onSearch}
                 onReset={onReset}
             />
-            </div>
-            <div className="ui basic segment">
-            <div className="ui grid">
-                <div className="four column row">
+            <div className="ui stackable four column grid">
                     {renderGalleryArtworks}
-                </div>
-            </div>
             </div>
         </div>
     )
