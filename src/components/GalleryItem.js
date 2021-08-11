@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 function GalleryItem({ artwork, updateLikes }) {
-    const { id, title, image, likes, edition, medium, price, date_created } = artwork
+    const { id, title, image, likes, edition, medium, price, "date created": date } = artwork
     const [isLiked, setIsLiked] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
     const [showModal, setShowModal] = useState(false)
@@ -38,18 +38,18 @@ function GalleryItem({ artwork, updateLikes }) {
     }
 
     return (
-        <div className="column">
-            {/* <div className={showModal ? "ui active small modal" : "ui modal"} style={{ position: 'absolute', left: 130 }}>
+        <div>
+            <div className={showModal ? "ui active small modal" : "ui modal"} style={{ position: 'absolute', left: 130 }}>
                 <div className="header">{title}</div>
                 <div className="image content">
                     <div className="image" >
                         <img src={image} style={{ width: "675px" }} onClick={() => setShowModal(false)} alt="artwork" />
                     </div>
                 </div>
-            </div> */}
-            {/* <div className="column"> */}
+            </div>
+            <div className="column">
 
-                <div className="ui segment"> 
+                <div className="ui segment">
 
                     <div className="ui card">
                         <div className="centered content">
@@ -74,7 +74,7 @@ function GalleryItem({ artwork, updateLikes }) {
                                     <li><b>edition:</b> {edition}</li>
                                     <li><b>description:</b> {medium}</li>
                                     <li><b>price:</b> ${price}</li>
-                                    <li><b>year:</b> {date_created}</li>
+                                    <li><b>year:</b> {date}</li>
 
                                 </p>
                             </div>
@@ -90,7 +90,7 @@ function GalleryItem({ artwork, updateLikes }) {
                         </div>
                     </div>
                 </div>
-            {/* </div> */}
+            </div>
         </div>
     )
 }
