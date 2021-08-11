@@ -18,10 +18,9 @@ function Limbism() {
     const [searchTermEdit, setSearchTermEdit] = useState("")
 
     useEffect(() => {
-        fetch("https://limitless-reaches-06090.herokuapp.com/artworks")
+        fetch("https://safe-temple-39376.herokuapp.com/artworks")
             .then(resp => resp.json())
-            .then(data => {setArtworks(data.artworks)
-            console.log(data.artworks)})
+            .then(data => setArtworks(data))
     }, [])
 
 

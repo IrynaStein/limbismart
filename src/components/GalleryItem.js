@@ -1,10 +1,12 @@
 import { useState } from "react";
 
 function GalleryItem({ artwork, updateLikes }) {
+
   const { id, title, image, likes, edition, medium, price, date_created } =
     artwork;
   const [isLiked, setIsLiked] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+
 
   function handleClick(e) {
     setIsLiked((mUV) => !mUV);
@@ -31,9 +33,11 @@ function GalleryItem({ artwork, updateLikes }) {
     }
   }
 
+
   function handleShowMoreInfo(e) {
     setShowInfo((mUV) => !mUV);
   }
+
 
   return (
     <div className="column">
@@ -97,9 +101,11 @@ function GalleryItem({ artwork, updateLikes }) {
                 <div className="visible content">
                   <i className="shop icon"></i>
                 </div>
+
               </div>
             </span>
           </div>
+
         </div>
       </div>
     </div>

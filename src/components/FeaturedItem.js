@@ -3,7 +3,7 @@ function FeaturedItem({ artwork, updateLikes }) {
     const [isLiked, setIsLiked] = useState(false)
     const [showInfo, setShowInfo] = useState(false)
     const [showModal, setShowModal] = useState(false)
-    const { id, title, image, likes, edition, price, medium, date_created } = artwork
+    const { id, title, image, likes, edition, price, medium, "date created": date } = artwork
 
     function handleClick(e) {
         console.log(e)
@@ -54,6 +54,7 @@ function FeaturedItem({ artwork, updateLikes }) {
                             {title}
                         </div>
                         <div className="image">
+                            {/* <img src={image} alt="artwork" onMouseEnter={() => setShowModal(true)} onMouseLeave={() => setShowModal(false)} /> */}
                             <img src={image} alt="artwork" onClick={() => setShowModal(true)} />
                         </div>
                         <div className="content">
@@ -72,7 +73,7 @@ function FeaturedItem({ artwork, updateLikes }) {
                                     <li><b>edition:</b> {edition}</li>
                                     <li><b>description:</b> {medium}</li>
                                     <li><b>price:</b> ${price}</li>
-                                    <li><b>year: </b>{date_created}</li>
+                                    <li><b>year: </b>{date}</li>
                                 </p>
                             </div>
 
