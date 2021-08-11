@@ -6,13 +6,13 @@ function FeaturedItem({ artwork, updateLikes }) {
     const { id, title, image, likes, edition, price, medium, date_created } = artwork
 
     function handleClick(e) {
-        console.log(e)
+        console.log(id)
         setIsLiked(mUV => !mUV)
 
         if (isLiked) {
-            fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
+            fetch(`https://limitless-reaches-06090.herokuapp.com/artworks/${id}`, {
                 method: "PATCH",
-                headers: { "Content-type": "application/json" },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     "likes": likes - 1
                 })
@@ -21,9 +21,9 @@ function FeaturedItem({ artwork, updateLikes }) {
                 .then(data => updateLikes(data))
         }
         else {
-            fetch(`https://safe-temple-39376.herokuapp.com/artworks/${id}`, {
+            fetch(`https://limitless-reaches-06090.herokuapp.com/artworks/${id}`, {
                 method: "PATCH",
-                headers: { "Content-type": "application/json" },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     "likes": parseInt(likes + 1)
                 })
