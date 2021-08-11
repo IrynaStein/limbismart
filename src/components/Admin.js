@@ -13,6 +13,7 @@ function Admin({ onAddNewArt, onSearchEdit, editableArtWork, onDelete, onEditArt
         category: "",
         "date created": 0
     }
+
     const [formData, setFormData] = useState(defaultState)
 
     const history = useHistory()

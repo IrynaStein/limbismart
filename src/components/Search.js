@@ -17,14 +17,15 @@ function Search({ onCategoryFilter, onSortChange, searchTerm, onSearch, onReset 
     }
 
     return (
-        <div className="inline-items">
+        // <div className="inline-items">
+        // <div className="ui basic segment">
             <div className="ui category search">
                 <div className="ui icon input">
                     <input onChange={handleChange} value={searchTerm} className="prompt" type="text" placeholder="Search by title..." />
                     <i className="search icon" />
                 </div>
                 <div className="results" />
-            </div>
+            
 
             <div className="ui compact menu" style={{ margin: "30px" }}>
                 <div className="ui simple dropdown item">
@@ -61,7 +62,8 @@ function Search({ onCategoryFilter, onSortChange, searchTerm, onSearch, onReset 
                 <i className="redo icon"></i> &nbsp; &nbsp;
                 <label style={{ fontSize: "12px" }}>Clear all filters</label> &nbsp; &nbsp;
             </button>
-        </div>
+            </div>
+        // </div>
     )
 }
 
