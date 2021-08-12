@@ -38,7 +38,7 @@ function Search({
 
       <div className="column">
         <div className="ui compact menu">
-          <div className="ui simple dropdown item" style={{ width: 180 }}>
+          <div className="ui simple dropdown item">
             Filter by category
             <i className="dropdown icon" />
             <div onClick={(e) => handleFilterChange(e)} className="menu">
